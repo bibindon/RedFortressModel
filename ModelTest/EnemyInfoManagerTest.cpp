@@ -26,9 +26,9 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                      _T("..\\StarmanLibTest\\enemyOrigin.csv"),
-                      _T("..\\StarmanLibTest\\enemyVisible.csv"));
+            obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                      _T("..\\ModelTest\\enemyOrigin.csv"),
+                      _T("..\\ModelTest\\enemyVisible.csv"));
 
             Assert::AreEqual(obj != nullptr, true);
             EnemyInfoManager::Destroy();
@@ -37,9 +37,9 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod03)
         {
             EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                      _T("..\\StarmanLibTest\\enemyOrigin.csv"),
-                      _T("..\\StarmanLibTest\\enemyVisible.csv"));
+            obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                      _T("..\\ModelTest\\enemyOrigin.csv"),
+                      _T("..\\ModelTest\\enemyVisible.csv"));
             std::vector<stEnemyInfo> enemyInfoList = obj->GetEnemyInfo(10.f, 0.f, 10.f, 1.f);
             Assert::AreEqual((int)enemyInfoList.size() == 1, true);
             EnemyInfoManager::Destroy();
@@ -50,9 +50,9 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod04)
         {
             EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                      _T("..\\StarmanLibTest\\enemyOrigin.csv"),
-                      _T("..\\StarmanLibTest\\enemyVisible.csv"));
+            obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                      _T("..\\ModelTest\\enemyOrigin.csv"),
+                      _T("..\\ModelTest\\enemyVisible.csv"));
             std::vector<stEnemyInfo> enemyInfoList = obj->GetEnemyInfo(5.f, 5.f, 5.f, 6.f);
             Assert::AreEqual(1, (int)enemyInfoList.size());
             Assert::AreEqual(enemyInfoList.at(0).m_SerialNumber == 1, true);
@@ -65,9 +65,9 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod05)
         {
             EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                      _T("..\\StarmanLibTest\\enemyOrigin.csv"),
-                      _T("..\\StarmanLibTest\\enemyVisible.csv"));
+            obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                      _T("..\\ModelTest\\enemyOrigin.csv"),
+                      _T("..\\ModelTest\\enemyVisible.csv"));
             std::vector<stEnemyInfo> enemyInfoList = obj->GetEnemyInfo(96.f, 0.f, 97.f, 2.f);
             Assert::AreEqual((int)enemyInfoList.size() == 1, true);
             Assert::AreEqual(enemyInfoList.at(0).m_SerialNumber == 30, true);
@@ -81,9 +81,9 @@ namespace StarmanLibTest
         {
             {
                 EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                          _T("..\\StarmanLibTest\\enemyOrigin.csv"),
-                          _T("..\\StarmanLibTest\\enemyVisible.csv"));
+                obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                          _T("..\\ModelTest\\enemyOrigin.csv"),
+                          _T("..\\ModelTest\\enemyVisible.csv"));
                 stEnemyInfo enemyInfo;
                 enemyInfo.m_x = 111.f;
                 enemyInfo.m_y = 222.f;
@@ -91,8 +91,8 @@ namespace StarmanLibTest
                 enemyInfo.m_HP = 444;
                 enemyInfo.m_bDefeated = true;
                 obj->UpdateEnemyInfo(5, enemyInfo);
-                obj->Save(_T("..\\StarmanLibTest\\enemySave.csv"),
-                          _T("..\\StarmanLibTest\\enemyVisibleSave.csv"));
+                obj->Save(_T("..\\ModelTest\\enemySave.csv"),
+                          _T("..\\ModelTest\\enemyVisibleSave.csv"));
                 EnemyInfoManager::Destroy();
             }
         }
@@ -101,9 +101,9 @@ namespace StarmanLibTest
         {
             {
                 EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                          _T("..\\StarmanLibTest\\enemyOrigin.csv"),
-                          _T("..\\StarmanLibTest\\enemyVisible.csv"));
+                obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                          _T("..\\ModelTest\\enemyOrigin.csv"),
+                          _T("..\\ModelTest\\enemyVisible.csv"));
                 stEnemyInfo enemyInfo;
                 enemyInfo.m_SerialNumber = 20;
                 wcsncpy_s(enemyInfo.m_id, _T("enban"), _TRUNCATE);
@@ -114,15 +114,15 @@ namespace StarmanLibTest
                 enemyInfo.m_bDefeated = true;
                 obj->UpdateEnemyInfo(20, enemyInfo);
                 obj->SetEnemyVisible(_T("enban"), true);
-                obj->Save(_T("..\\StarmanLibTest\\enemySave.csv"),
-                          _T("..\\StarmanLibTest\\enemyVisibleSave.csv"));
+                obj->Save(_T("..\\ModelTest\\enemySave.csv"),
+                          _T("..\\ModelTest\\enemyVisibleSave.csv"));
                 EnemyInfoManager::Destroy();
             }
             {
                 EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                          _T("..\\StarmanLibTest\\enemySave.csv"),
-                          _T("..\\StarmanLibTest\\enemyVisibleSave.csv"));
+                obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                          _T("..\\ModelTest\\enemySave.csv"),
+                          _T("..\\ModelTest\\enemyVisibleSave.csv"));
                 std::vector<stEnemyInfo> enemyInfoList = obj->GetEnemyInfo(111.f, 222.f, 333.f, 1.f);
                 Assert::AreEqual(true, (int)enemyInfoList.size() == 1);
                 Assert::AreEqual(true, enemyInfoList.at(0).m_SerialNumber == 20);
@@ -140,9 +140,9 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod08)
         {
             EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                      _T("..\\StarmanLibTest\\enemyOrigin.bin"),
-                      _T("..\\StarmanLibTest\\enemyVisible.csv"),
+            obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                      _T("..\\ModelTest\\enemyOrigin.bin"),
+                      _T("..\\ModelTest\\enemyVisible.csv"),
                       false,
                       true);
 
@@ -160,9 +160,9 @@ namespace StarmanLibTest
         {
             {
                 EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                          _T("..\\StarmanLibTest\\enemyOrigin.bin"),
-                          _T("..\\StarmanLibTest\\enemyVisible.csv"),
+                obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                          _T("..\\ModelTest\\enemyOrigin.bin"),
+                          _T("..\\ModelTest\\enemyVisible.csv"),
                           false,
                           true);
 
@@ -176,8 +176,8 @@ namespace StarmanLibTest
                 enemyInfo.m_bDefeated = true;
                 obj->UpdateEnemyInfo(20, enemyInfo);
                 obj->SetEnemyVisible(_T("enban"), true);
-                obj->Save(_T("..\\StarmanLibTest\\enemySave.bin"),
-                          _T("..\\StarmanLibTest\\enemyVisibleSave.csv"),
+                obj->Save(_T("..\\ModelTest\\enemySave.bin"),
+                          _T("..\\ModelTest\\enemyVisibleSave.csv"),
                           false,
                           true);
                 EnemyInfoManager::Destroy();
@@ -185,9 +185,9 @@ namespace StarmanLibTest
 
             {
                 EnemyInfoManager* obj = EnemyInfoManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\enemyDef.csv"),
-                          _T("..\\StarmanLibTest\\enemySave.bin"),
-                          _T("..\\StarmanLibTest\\enemyVisibleSave.csv"),
+                obj->Init(_T("..\\ModelTest\\enemyDef.csv"),
+                          _T("..\\ModelTest\\enemySave.bin"),
+                          _T("..\\ModelTest\\enemyVisibleSave.csv"),
                           false,
                           true);
                 std::vector<stEnemyInfo> enemyInfoList = obj->GetEnemyInfo(111.f, 222.f, 333.f, 1.f);

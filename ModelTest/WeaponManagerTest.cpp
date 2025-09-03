@@ -22,16 +22,16 @@ namespace StarmanLibTest
         TEST_METHOD_INITIALIZE(Initialize)
         {
             ItemManager* itemManager = ItemManager::GetObj();
-            itemManager->Init(_T("..\\StarmanLibTest\\item.csv"), _T("..\\StarmanLibTest\\item_pos.csv"));
+            itemManager->Init(_T("..\\ModelTest\\item.csv"), _T("..\\ModelTest\\item_pos.csv"));
 
             Inventory* inventory = Inventory::GetObj();
-            inventory->Init(_T("..\\StarmanLibTest\\inventory.csv"));
+            inventory->Init(_T("..\\ModelTest\\inventory.csv"));
 
             StorehouseManager* storehouseManager = StorehouseManager::Get();
-            storehouseManager->Init(_T("..\\StarmanLibTest\\storehouseListOrigin.csv"));
+            storehouseManager->Init(_T("..\\ModelTest\\storehouseListOrigin.csv"));
 
             CraftInfoManager* craftInfoManager = CraftInfoManager::GetObj();
-            craftInfoManager->Init(_T("..\\StarmanLibTest\\craftDef.csv"));
+            craftInfoManager->Init(_T("..\\ModelTest\\craftDef.csv"));
         }
 
         TEST_METHOD_CLEANUP(CleanUp)
@@ -51,8 +51,8 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             WeaponManager* wm = WeaponManager::GetObj();
-            wm->Init(_T("..\\StarmanLibTest\\weapon.csv"),
-                     _T("..\\StarmanLibTest\\weaponSave.csv"));
+            wm->Init(_T("..\\ModelTest\\weapon.csv"),
+                     _T("..\\ModelTest\\weaponSave.csv"));
 
             WeaponManager::Destroy();
         }
@@ -61,8 +61,8 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod03)
         {
             WeaponManager* wm = WeaponManager::GetObj();
-            wm->Init(_T("..\\StarmanLibTest\\weapon.csv"),
-                     _T("..\\StarmanLibTest\\weaponSave.csv"));
+            wm->Init(_T("..\\ModelTest\\weapon.csv"),
+                     _T("..\\ModelTest\\weaponSave.csv"));
 
             std::wstring work;
             //------------------------------------------------
@@ -147,8 +147,8 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod04)
         {
             WeaponManager* wm = WeaponManager::GetObj();
-            wm->Init(_T("..\\StarmanLibTest\\weapon.csv"),
-                     _T("..\\StarmanLibTest\\weaponSave.csv"));
+            wm->Init(_T("..\\ModelTest\\weapon.csv"),
+                     _T("..\\ModelTest\\weaponSave.csv"));
 
             double work_d = 0.0;
 

@@ -23,13 +23,13 @@ namespace StarmanLibTest
         TEST_METHOD_INITIALIZE(Initialize)
         {
             ItemManager* itemManager = ItemManager::GetObj();
-            itemManager->Init(_T("..\\StarmanLibTest\\item.csv"), _T("..\\StarmanLibTest\\item_pos.csv"));
+            itemManager->Init(_T("..\\ModelTest\\item.csv"), _T("..\\ModelTest\\item_pos.csv"));
 
             Inventory* inventory = Inventory::GetObj();
-            inventory->Init(_T("..\\StarmanLibTest\\inventory.csv"));
+            inventory->Init(_T("..\\ModelTest\\inventory.csv"));
 
             StorehouseManager* storehouseManager = StorehouseManager::Get();
-            storehouseManager->Init(_T("..\\StarmanLibTest\\storehouseListOrigin.csv"));
+            storehouseManager->Init(_T("..\\ModelTest\\storehouseListOrigin.csv"));
         }
 
         TEST_METHOD_CLEANUP(CleanUp)
@@ -50,7 +50,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             CraftInfoManager* obj = CraftInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\craftDef.csv"));
+            obj->Init(_T("..\\ModelTest\\craftDef.csv"));
             Assert::AreEqual(obj != nullptr, true);
             CraftInfoManager::Destroy();
         }
@@ -58,7 +58,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod03)
         {
             CraftInfoManager* obj = CraftInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\craftDef.csv"));
+            obj->Init(_T("..\\ModelTest\\craftDef.csv"));
             std::vector<CraftOutput> work = obj->GetCraftItemList();
             Assert::AreEqual((int)work.size(), 76);
             CraftInfoManager::Destroy();
@@ -67,7 +67,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod04)
         {
             CraftInfoManager* obj = CraftInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\craftDef.csv"));
+            obj->Init(_T("..\\ModelTest\\craftDef.csv"));
             std::vector<CraftOutput> work = obj->GetCraftItemList();
 
             {
@@ -112,7 +112,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod05)
         {
             CraftInfoManager* obj = CraftInfoManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\craftDef.csv"));
+            obj->Init(_T("..\\ModelTest\\craftDef.csv"));
             std::vector<CraftOutput> work = obj->GetCraftItemList();
 
             {

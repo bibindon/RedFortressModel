@@ -26,7 +26,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             NpcStatusManager* obj = NpcStatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\npcStatus.csv"));
+            obj->Init(_T("..\\ModelTest\\npcStatus.csv"));
             Assert::AreEqual(obj != nullptr, true);
             NpcStatusManager::Destroy();
         }
@@ -34,7 +34,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod03)
         {
             NpcStatusManager* obj = NpcStatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\npcStatus.csv"));
+            obj->Init(_T("..\\ModelTest\\npcStatus.csv"));
             NpcStatus npc = obj->GetNpcStatus(_T("sankakuman"));
             float work = 0.f;
 
@@ -59,7 +59,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod04)
         {
             NpcStatusManager* obj = NpcStatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\npcStatus.csv"));
+            obj->Init(_T("..\\ModelTest\\npcStatus.csv"));
             NpcStatus npc = obj->GetNpcStatus(_T("shikakuman"));
             bool work = false;
 
@@ -79,7 +79,7 @@ namespace StarmanLibTest
         {
             {
                 NpcStatusManager* obj = NpcStatusManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\npcStatus.csv"));
+                obj->Init(_T("..\\ModelTest\\npcStatus.csv"));
                 NpcStatus npc = obj->GetNpcStatus(_T("daikeiman"));
                 bool work = false;
 
@@ -92,12 +92,12 @@ namespace StarmanLibTest
                 npc.SetDrinkWordbress(true);
                 npc.SetDead();
                 obj->SetNpcStatus(_T("daikeiman"), npc);
-                obj->Save(_T("..\\StarmanLibTest\\npcStatusSave.csv"));
+                obj->Save(_T("..\\ModelTest\\npcStatusSave.csv"));
                 NpcStatusManager::Destroy();
             }
             {
                 NpcStatusManager* obj = NpcStatusManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\npcStatusSave.csv"));
+                obj->Init(_T("..\\ModelTest\\npcStatusSave.csv"));
                 NpcStatus npc = obj->GetNpcStatus(_T("daikeiman"));
                 bool work_b = false;
                 float work_f = 0.f;

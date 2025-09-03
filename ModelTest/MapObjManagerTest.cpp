@@ -26,7 +26,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs = obj->GetMapObjList(-290, 550);
             Assert::AreEqual(true, vs.size() != 0);
             MapObjManager::Destroy();
@@ -35,7 +35,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod03)
         {
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs = obj->GetMapObjList(-150, 550);
             Assert::AreEqual(3, (int)vs.size());
             MapObjManager::Destroy();
@@ -44,7 +44,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod04)
         {
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs = obj->GetMapObjList(-150, 550);
             Assert::AreEqual(3, (int)vs.size());
 
@@ -56,7 +56,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod05)
         {
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs = obj->GetMapObjList(-150, 550);
             obj->SetShow(-2, 5, 1, true);
 
@@ -68,7 +68,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod06)
         {
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs;
             obj->GetMapObjListShow(-150, 550, &vs);
             Assert::AreEqual(3, (int)vs.size());
@@ -83,7 +83,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod07)
         {
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs;
             obj->GetMapObjListHide(-150, 550, &vs);
             Assert::AreEqual(0, (int)vs.size());
@@ -100,13 +100,13 @@ namespace StarmanLibTest
         {
             {
                 MapObjManager* obj = MapObjManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
-                obj->SaveWithBinary(_T("..\\StarmanLibTest\\map_obj2.bin"));
+                obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
+                obj->SaveWithBinary(_T("..\\ModelTest\\map_obj2.bin"));
                 MapObjManager::Destroy();
             }
 
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->InitWithBinary(_T("..\\StarmanLibTest\\map_obj2.bin"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->InitWithBinary(_T("..\\ModelTest\\map_obj2.bin"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs;
             auto mapObjList = obj->GetMapObjList(-430, 405);
 
@@ -119,16 +119,16 @@ namespace StarmanLibTest
         {
             {
                 MapObjManager* obj = MapObjManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\map_obj.csv"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+                obj->Init(_T("..\\ModelTest\\map_obj.csv"), _T("..\\ModelTest\\map_obj_type.csv"));
 
                 // 1件目だけ書き換える
                 obj->SetVisible(-2, 5, 1, false);
-                obj->SaveWithBinary(_T("..\\StarmanLibTest\\map_obj3.bin"));
+                obj->SaveWithBinary(_T("..\\ModelTest\\map_obj3.bin"));
                 MapObjManager::Destroy();
             }
 
             MapObjManager* obj = MapObjManager::GetObj();
-            obj->InitWithBinary(_T("..\\StarmanLibTest\\map_obj3.bin"), _T("..\\StarmanLibTest\\map_obj_type.csv"));
+            obj->InitWithBinary(_T("..\\ModelTest\\map_obj3.bin"), _T("..\\ModelTest\\map_obj_type.csv"));
             std::vector<stMapObj> vs;
             auto mapObjList = obj->GetMapObjList(-285, 550);
 

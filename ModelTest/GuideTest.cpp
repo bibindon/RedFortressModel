@@ -25,14 +25,14 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             Guide* obj = Guide::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\guideDef.csv"), _T("..\\StarmanLibTest\\guideOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\guideDef.csv"), _T("..\\ModelTest\\guideOrigin.csv"));
             Assert::AreEqual((int)obj->GetCategoryList().size() != 0, true);
         }
 
         TEST_METHOD(TestMethod03)
         {
             Guide* obj = Guide::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\guideDef.csv"), _T("..\\StarmanLibTest\\guideOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\guideDef.csv"), _T("..\\ModelTest\\guideOrigin.csv"));
             std::wstring text = obj->GetText(_T("ステータス"), _T("ステータスについて"));
             Assert::AreEqual(text.size() != 0, true);
             std::wstring text2 = _T("\"このゲームには以下の１０のステータスが存在する。\n\n");
@@ -47,14 +47,14 @@ namespace StarmanLibTest
         {
             {
                 Guide* obj = Guide::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\guideDef.csv"), _T("..\\StarmanLibTest\\guideOrigin.csv"));
+                obj->Init(_T("..\\ModelTest\\guideDef.csv"), _T("..\\ModelTest\\guideOrigin.csv"));
                 obj->SetVisible(_T("ステータス"), _T("「脳のスタミナ」について"));
-                obj->Save(_T("..\\StarmanLibTest\\guideSave.csv"));
+                obj->Save(_T("..\\ModelTest\\guideSave.csv"));
                 Guide::Destroy();
             }
             {
                 Guide* obj = Guide::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\guideDef.csv"), _T("..\\StarmanLibTest\\guideSave.csv"));
+                obj->Init(_T("..\\ModelTest\\guideDef.csv"), _T("..\\ModelTest\\guideSave.csv"));
                 bool result = obj->GetVisible(_T("ステータス"), _T("「脳のスタミナ」について"));
                 Assert::AreEqual(result, true);
             }

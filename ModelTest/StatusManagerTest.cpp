@@ -19,10 +19,10 @@ namespace StarmanLibTest
         TEST_METHOD_INITIALIZE(Initialize)
         {
             ItemManager* itemManager = ItemManager::GetObj();
-            itemManager->Init(_T("..\\StarmanLibTest\\item.csv"), _T("..\\StarmanLibTest\\item_pos.csv"));
+            itemManager->Init(_T("..\\ModelTest\\item.csv"), _T("..\\ModelTest\\item_pos.csv"));
 
             Inventory* inventory = Inventory::GetObj();
-            inventory->Init(_T("..\\StarmanLibTest\\inventory.csv"));
+            inventory->Init(_T("..\\ModelTest\\inventory.csv"));
         }
 
         TEST_METHOD_CLEANUP(CleanUp)
@@ -41,7 +41,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod02)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             Assert::AreEqual(obj != nullptr, true);
             StatusManager::Destroy();
         }
@@ -49,7 +49,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod03)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             float value = obj->GetBodyStaminaCurrent();
             Assert::AreEqual(value, 10.f);
             StatusManager::Destroy();
@@ -58,7 +58,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod04)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             float value = obj->GetWaterMax();
             Assert::AreEqual(value, 100.f);
             StatusManager::Destroy();
@@ -67,7 +67,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod05)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             obj->SetBodyStaminaCurrent(123.f);
             float value = obj->GetBodyStaminaCurrent();
             Assert::AreEqual(value, 123.f);
@@ -77,7 +77,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod06)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             bool value = obj->GetFractureArm();
             Assert::AreEqual(value, false);
             StatusManager::Destroy();
@@ -86,7 +86,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod07)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             bool value = obj->GetLackOfSleep();
             Assert::AreEqual(value, false);
             StatusManager::Destroy();
@@ -95,7 +95,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod08)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+            obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
             obj->SetFractureArm(true);
             bool value = obj->GetFractureArm();
             Assert::AreEqual(value, true);
@@ -106,15 +106,15 @@ namespace StarmanLibTest
         {
             {
                 StatusManager* obj = StatusManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\statusOrigin.csv"));
+                obj->Init(_T("..\\ModelTest\\statusOrigin.csv"));
                 obj->SetBodyStaminaCurrent(123.f);
                 obj->SetFractureArm(true);
-                obj->Save(_T("..\\StarmanLibTest\\statusSave.csv"), 1, 2, 3);
+                obj->Save(_T("..\\ModelTest\\statusSave.csv"), 1, 2, 3);
                 StatusManager::Destroy();
             }
             {
                 StatusManager* obj = StatusManager::GetObj();
-                obj->Init(_T("..\\StarmanLibTest\\statusSave.csv"));
+                obj->Init(_T("..\\ModelTest\\statusSave.csv"));
                 float value1 = obj->GetBodyStaminaCurrent();
                 Assert::AreEqual(value1, 123.f);
 
@@ -129,7 +129,7 @@ namespace StarmanLibTest
         TEST_METHOD(TestMethod10)
         {
             StatusManager* obj = StatusManager::GetObj();
-            obj->Init(_T("..\\StarmanLibTest\\statusTest10.csv"));
+            obj->Init(_T("..\\ModelTest\\statusTest10.csv"));
             float work = obj->GetAttackPower();
             obj->ConsumeAttackCost();
         }
