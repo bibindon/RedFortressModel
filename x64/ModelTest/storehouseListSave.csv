@@ -1,4 +1,4 @@
 ﻿ID,倉庫ファイル,x,y,z,イカダ
-1,..\StarmanLibTest\storehouse.csv,1,4,7,n
-2,..\StarmanLibTest\storehouse2.csv,2,5,8,n
-3,..\StarmanLibTest\storehouse3.csv,,,,y
+1,..\ModelTest\storehouse.csv,1,4,7,n
+2,..\ModelTest\storehouse2.csv,2,5,8,n
+3,..\ModelTest\storehouse3.csv,,,,y
