@@ -3,9 +3,9 @@
 #include "PowereggDateTime.h"
 #include <time.h>
 
-NSStarmanLib::RainModel* NSStarmanLib::RainModel::m_rain = nullptr;
+NSModel::RainModel* NSModel::RainModel::m_rain = nullptr;
 
-NSStarmanLib::RainModel* NSStarmanLib::RainModel::Get()
+NSModel::RainModel* NSModel::RainModel::Get()
 {
     if (m_rain == nullptr)
     {
@@ -18,14 +18,14 @@ NSStarmanLib::RainModel* NSStarmanLib::RainModel::Get()
     return m_rain;
 }
 
-void NSStarmanLib::RainModel::Destroy()
+void NSModel::RainModel::Destroy()
 {
     delete m_rain;
     m_rain = nullptr;
 }
 
 // 雨の状態を更新。詳細はヘッダーファイル。
-void NSStarmanLib::RainModel::Update()
+void NSModel::RainModel::Update()
 {
     auto datetime = PowereggDateTime::GetObj();
     if (datetime == nullptr)
@@ -119,7 +119,7 @@ void NSStarmanLib::RainModel::Update()
     m_previousHour = currentHour;
 }
 
-bool NSStarmanLib::RainModel::IsRain() const
+bool NSModel::RainModel::IsRain() const
 {
     return m_bRain;
 }

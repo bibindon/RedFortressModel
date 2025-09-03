@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 
 // 敵の定義情報

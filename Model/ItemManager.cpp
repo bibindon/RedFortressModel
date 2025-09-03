@@ -3,7 +3,7 @@
 #include "Util.h"
 #include "WeaponManager.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 ItemManager* ItemManager::obj { nullptr };
 
@@ -206,32 +206,32 @@ void ItemDef::SetLevel(const int arg)
     m_level = arg;
 }
 
-int NSStarmanLib::ItemDef::GetDurabilityMax() const
+int NSModel::ItemDef::GetDurabilityMax() const
 {
     return m_durabilityMax;
 }
 
-void NSStarmanLib::ItemDef::SetDurabilityMax(int arg)
+void NSModel::ItemDef::SetDurabilityMax(int arg)
 {
     m_durabilityMax = arg;
 }
 
-std::wstring NSStarmanLib::ItemDef::GetWeaponId() const
+std::wstring NSModel::ItemDef::GetWeaponId() const
 {
     return m_weaponId;
 }
 
-void NSStarmanLib::ItemDef::SetWeaponId(const std::wstring& arg)
+void NSModel::ItemDef::SetWeaponId(const std::wstring& arg)
 {
     m_weaponId = arg;
 }
 
-std::wstring NSStarmanLib::ItemDef::GetUnreinforcedId() const
+std::wstring NSModel::ItemDef::GetUnreinforcedId() const
 {
     return m_unreinforcedId;
 }
 
-void NSStarmanLib::ItemDef::SetUnreinforcedId(const std::wstring& arg)
+void NSModel::ItemDef::SetUnreinforcedId(const std::wstring& arg)
 {
     m_unreinforcedId = arg;
 }
@@ -422,12 +422,12 @@ void ItemManager::Init(const std::wstring& csvfile, const std::wstring& csvfileP
     m_inited = true;
 }
 
-bool NSStarmanLib::ItemManager::Inited()
+bool NSModel::ItemManager::Inited()
 {
     return m_inited;
 }
 
-void NSStarmanLib::ItemManager::Save(const std::wstring& csvfilePos,
+void NSModel::ItemManager::Save(const std::wstring& csvfilePos,
                                      const bool encrypt)
 {
     std::vector<std::vector<std::wstring>> vvs;
@@ -473,7 +473,7 @@ void NSStarmanLib::ItemManager::Save(const std::wstring& csvfilePos,
     Util::WriteToCsv(csvfilePos, vvs, encrypt);
 }
 
-std::vector<std::wstring> NSStarmanLib::ItemManager::GetItemIdList()
+std::vector<std::wstring> NSModel::ItemManager::GetItemIdList()
 {
     std::vector<std::wstring> idList;
 
@@ -506,7 +506,7 @@ ItemDef ItemManager::GetItemDef(const std::wstring& id)
     return itemDef;
 }
 
-ItemDef NSStarmanLib::ItemManager::GetItemDefByWeaponId(const std::wstring& weaponId, const int level)
+ItemDef NSModel::ItemManager::GetItemDefByWeaponId(const std::wstring& weaponId, const int level)
 {
     ItemDef itemDef;
     for (auto it = m_itemDefMap.begin(); it != m_itemDefMap.end(); ++it)
@@ -530,7 +530,7 @@ ItemDef NSStarmanLib::ItemManager::GetItemDefByWeaponId(const std::wstring& weap
     return itemDef;
 }
 
-std::vector<std::wstring> NSStarmanLib::ItemManager::GetItemDef(const ItemDef::ItemType type)
+std::vector<std::wstring> NSModel::ItemManager::GetItemDef(const ItemDef::ItemType type)
 {
     std::vector<std::wstring> idList;
 
@@ -545,7 +545,7 @@ std::vector<std::wstring> NSStarmanLib::ItemManager::GetItemDef(const ItemDef::I
     return idList;
 }
 
-ItemDef NSStarmanLib::ItemManager::GetItemDefByPosID(const int posId)
+ItemDef NSModel::ItemManager::GetItemDefByPosID(const int posId)
 {
     if (m_itemPosMap.find(posId) == m_itemPosMap.end())
     {
@@ -564,7 +564,7 @@ ItemDef NSStarmanLib::ItemManager::GetItemDefByPosID(const int posId)
 
 // 引数で指定した座標に存在するアイテムを取得
 // GetItemPosIdが-1だったらアイテムがない。
-ItemPos NSStarmanLib::ItemManager::GetItemPosByPos(const float x,
+ItemPos NSModel::ItemManager::GetItemPosByPos(const float x,
                                                        const float y,
                                                        const float z,
                                                        const float r)
@@ -597,7 +597,7 @@ ItemPos NSStarmanLib::ItemManager::GetItemPosByPos(const float x,
     return itemPos;
 }
 
-void NSStarmanLib::ItemManager::SetItemPosObtained(const int itemPosId)
+void NSModel::ItemManager::SetItemPosObtained(const int itemPosId)
 {
     if (m_itemPosMap.find(itemPosId) == m_itemPosMap.end())
     {
@@ -606,81 +606,81 @@ void NSStarmanLib::ItemManager::SetItemPosObtained(const int itemPosId)
     m_itemPosMap[itemPosId].SetObtained(true);
 }
 
-void NSStarmanLib::ItemInfo::SetId(const std::wstring& arg)
+void NSModel::ItemInfo::SetId(const std::wstring& arg)
 {
     m_id = arg;
 }
 
-std::wstring NSStarmanLib::ItemInfo::GetId() const
+std::wstring NSModel::ItemInfo::GetId() const
 {
     return m_id;
 }
 
-void NSStarmanLib::ItemInfo::SetSubId(const int arg)
+void NSModel::ItemInfo::SetSubId(const int arg)
 {
     m_subId = arg;
 }
 
-int NSStarmanLib::ItemInfo::GetSubId() const
+int NSModel::ItemInfo::GetSubId() const
 {
     return m_subId;
 }
 
-void NSStarmanLib::ItemInfo::SetDurabilityCurrent(const int arg)
+void NSModel::ItemInfo::SetDurabilityCurrent(const int arg)
 {
     m_durabilityCurrent = arg;
 }
 
-int NSStarmanLib::ItemInfo::GetDurabilityCurrent() const
+int NSModel::ItemInfo::GetDurabilityCurrent() const
 {
     return m_durabilityCurrent;
 }
 
-ItemDef NSStarmanLib::ItemInfo::GetItemDef() const
+ItemDef NSModel::ItemInfo::GetItemDef() const
 {
     return ItemManager::GetObj()->GetItemDef(m_id);
 }
 
-void NSStarmanLib::ItemPos::SetItemPosId(const int id)
+void NSModel::ItemPos::SetItemPosId(const int id)
 {
     m_itemPosId = id;
 }
 
-int NSStarmanLib::ItemPos::GetItemPosId() const
+int NSModel::ItemPos::GetItemPosId() const
 {
     return m_itemPosId;
 }
 
-void NSStarmanLib::ItemPos::SetItemDefId(const std::wstring& id)
+void NSModel::ItemPos::SetItemDefId(const std::wstring& id)
 {
     m_itemDefId = id;
 }
 
-std::wstring NSStarmanLib::ItemPos::GetItemDefId() const
+std::wstring NSModel::ItemPos::GetItemDefId() const
 {
     return m_itemDefId;
 }
 
-void NSStarmanLib::ItemPos::SetPos(const float x, const float y, const float z)
+void NSModel::ItemPos::SetPos(const float x, const float y, const float z)
 {
     m_x = x;
     m_y = y;
     m_z = z;
 }
 
-void NSStarmanLib::ItemPos::GetPos(float* x, float* y, float* z)
+void NSModel::ItemPos::GetPos(float* x, float* y, float* z)
 {
     *x = m_x;
     *y = m_y;
     *z = m_z;
 }
 
-void NSStarmanLib::ItemPos::SetObtained(const bool arg)
+void NSModel::ItemPos::SetObtained(const bool arg)
 {
     m_obtained = arg;
 }
 
-bool NSStarmanLib::ItemPos::GetObtained()
+bool NSModel::ItemPos::GetObtained()
 {
     return m_obtained;
 }

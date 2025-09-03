@@ -8,7 +8,7 @@
 
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 void Storehouse::Init(const std::wstring& csvfile,
                       const bool decrypt)
@@ -168,7 +168,7 @@ void Storehouse::AddItem(const std::wstring& id, const int durability)
     m_weight = CalcWeight();
 }
 
-void NSStarmanLib::Storehouse::AddItemWithSubID(const std::wstring& id, const int subId, const int durability)
+void NSModel::Storehouse::AddItemWithSubID(const std::wstring& id, const int subId, const int durability)
 {
     ItemInfo itemInfo;
     itemInfo.SetId(id);
@@ -193,7 +193,7 @@ void Storehouse::RemoveItem(const std::wstring& id, const int subId)
     m_weight = CalcWeight();
 }
 
-void NSStarmanLib::Storehouse::SetItemDurability(const std::wstring& id,
+void NSModel::Storehouse::SetItemDurability(const std::wstring& id,
                                                  const int subId,
                                                  const int durability)
 {
@@ -207,7 +207,7 @@ void NSStarmanLib::Storehouse::SetItemDurability(const std::wstring& id,
     }
 }
 
-bool NSStarmanLib::Storehouse::ExistItem(const std::wstring& id, const int subId)
+bool NSModel::Storehouse::ExistItem(const std::wstring& id, const int subId)
 {
     bool result = false;
 
@@ -222,7 +222,7 @@ bool NSStarmanLib::Storehouse::ExistItem(const std::wstring& id, const int subId
     return result;
 }
 
-ItemInfo NSStarmanLib::Storehouse::GetItemInfo(const std::wstring& id, const int subId)
+ItemInfo NSModel::Storehouse::GetItemInfo(const std::wstring& id, const int subId)
 {
     if (ExistItem(id, subId) == false)
     {
@@ -244,7 +244,7 @@ ItemInfo NSStarmanLib::Storehouse::GetItemInfo(const std::wstring& id, const int
 
 
 // SubIDをリストで受け取る
-std::vector<int> NSStarmanLib::Storehouse::GetSubIdList(const std::wstring& id)
+std::vector<int> NSModel::Storehouse::GetSubIdList(const std::wstring& id)
 {
     std::vector<int> result;
     for (auto it = m_itemInfoList.begin(); it != m_itemInfoList.end(); ++it)
@@ -279,41 +279,41 @@ float Storehouse::GetWeight()
     return m_weight;
 }
 
-std::list<ItemInfo> NSStarmanLib::Storehouse::GetAllItem()
+std::list<ItemInfo> NSModel::Storehouse::GetAllItem()
 {
     return m_itemInfoList;
 }
 
-void NSStarmanLib::Storehouse::SetXYZ(const float x, const float y, const float z)
+void NSModel::Storehouse::SetXYZ(const float x, const float y, const float z)
 {
     m_x = x;
     m_y = y;
     m_z = z;
 }
 
-void NSStarmanLib::Storehouse::GetXYZ(float* x, float* y, float* z)
+void NSModel::Storehouse::GetXYZ(float* x, float* y, float* z)
 {
     *x = m_x;
     *y = m_y;
     *z = m_z;
 }
 
-void NSStarmanLib::Storehouse::SetIsRaft(const bool arg)
+void NSModel::Storehouse::SetIsRaft(const bool arg)
 {
     m_bRaft = arg;
 }
 
-bool NSStarmanLib::Storehouse::GetIsRaft() const
+bool NSModel::Storehouse::GetIsRaft() const
 {
     return m_bRaft;
 }
 
-void NSStarmanLib::Storehouse::SetCsvFileName(const std::wstring arg)
+void NSModel::Storehouse::SetCsvFileName(const std::wstring arg)
 {
     m_csvfilename = arg;
 }
 
-std::wstring NSStarmanLib::Storehouse::GetCsvFileName() const
+std::wstring NSModel::Storehouse::GetCsvFileName() const
 {
     return m_csvfilename;
 }
@@ -335,7 +335,7 @@ float Storehouse::CalcWeight()
     return result;
 }
 
-void NSStarmanLib::Storehouse::Sort()
+void NSModel::Storehouse::Sort()
 {
     m_itemInfoList.sort([](const ItemInfo& lhs, const ItemInfo& rhs)
                         {
@@ -354,9 +354,9 @@ void NSStarmanLib::Storehouse::Sort()
                         });
 }
 
-StorehouseManager* NSStarmanLib::StorehouseManager::m_obj = nullptr;
+StorehouseManager* NSModel::StorehouseManager::m_obj = nullptr;
 
-StorehouseManager* NSStarmanLib::StorehouseManager::Get()
+StorehouseManager* NSModel::StorehouseManager::Get()
 {
     if (m_obj == nullptr)
     {
@@ -365,13 +365,13 @@ StorehouseManager* NSStarmanLib::StorehouseManager::Get()
     return m_obj;
 }
 
-void NSStarmanLib::StorehouseManager::Destroy()
+void NSModel::StorehouseManager::Destroy()
 {
     delete StorehouseManager::m_obj;
     StorehouseManager::m_obj = nullptr;
 }
 
-void NSStarmanLib::StorehouseManager::Init(const std::wstring& csvfile)
+void NSModel::StorehouseManager::Init(const std::wstring& csvfile)
 {
     std::vector<std::vector<std::wstring>> vvs = Util::ReadFromCsv(csvfile, false);
 
@@ -411,12 +411,12 @@ void NSStarmanLib::StorehouseManager::Init(const std::wstring& csvfile)
     m_inited = true;
 }
 
-bool NSStarmanLib::StorehouseManager::Inited()
+bool NSModel::StorehouseManager::Inited()
 {
     return m_inited;
 }
 
-void NSStarmanLib::StorehouseManager::Save(const std::wstring& managerFile,
+void NSModel::StorehouseManager::Save(const std::wstring& managerFile,
                                            const std::wstring& csvDir)
 {
     std::vector<std::vector<std::wstring>> vvs;
@@ -475,7 +475,7 @@ void NSStarmanLib::StorehouseManager::Save(const std::wstring& managerFile,
     }
 }
 
-std::vector<int> NSStarmanLib::StorehouseManager::GetStorehouseIdList()
+std::vector<int> NSModel::StorehouseManager::GetStorehouseIdList()
 {
     std::vector<int> vi;
     for (auto it = m_StorehouseMap.begin(); it != m_StorehouseMap.end(); ++it)
@@ -486,12 +486,12 @@ std::vector<int> NSStarmanLib::StorehouseManager::GetStorehouseIdList()
     return vi;
 }
 
-Storehouse* NSStarmanLib::StorehouseManager::GetStorehouse(const int id)
+Storehouse* NSModel::StorehouseManager::GetStorehouse(const int id)
 {
     return &m_StorehouseMap.at(id);
 }
 
-Storehouse* NSStarmanLib::StorehouseManager::GetNearStorehouse(const float x, const float z)
+Storehouse* NSModel::StorehouseManager::GetNearStorehouse(const float x, const float z)
 {
     Storehouse* result = nullptr;
     for (auto it = m_StorehouseMap.begin(); it != m_StorehouseMap.end(); ++it)
@@ -534,7 +534,7 @@ Storehouse* NSStarmanLib::StorehouseManager::GetNearStorehouse(const float x, co
     return result;
 }
 
-Storehouse* NSStarmanLib::StorehouseManager::GetCurrentActiveStorehouse()
+Storehouse* NSModel::StorehouseManager::GetCurrentActiveStorehouse()
 {
     if (ActivityBase::Get()->GetBaseType() == eBaseType::Precision)
     {
@@ -546,7 +546,7 @@ Storehouse* NSStarmanLib::StorehouseManager::GetCurrentActiveStorehouse()
     }
 }
 
-std::vector<int> NSStarmanLib::StorehouseManager::GetSubIdListFromAllStorehouse(const std::wstring& id)
+std::vector<int> NSModel::StorehouseManager::GetSubIdListFromAllStorehouse(const std::wstring& id)
 {
     std::vector<int> vi;
 
@@ -561,7 +561,7 @@ std::vector<int> NSStarmanLib::StorehouseManager::GetSubIdListFromAllStorehouse(
     return vi;
 }
 
-void NSStarmanLib::StorehouseManager::AddStorehouse()
+void NSModel::StorehouseManager::AddStorehouse()
 {
     Storehouse storehouse;
 

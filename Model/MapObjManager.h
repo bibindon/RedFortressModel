@@ -6,7 +6,7 @@
 
 // およそ100メートル以内の3Dモデルの情報を返す。
 // 1秒に一回くらい呼ばれる想定
-namespace NSStarmanLib
+namespace NSModel
 {
 
 // 廃止予定

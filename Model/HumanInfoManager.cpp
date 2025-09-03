@@ -2,7 +2,7 @@
 #include "ItemManager.h"
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 HumanInfoManager* HumanInfoManager::obj { nullptr };
 

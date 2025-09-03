@@ -6,7 +6,7 @@
 #include <vector>
 #include <unordered_map>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // TODO 熟練度について
 // 筋肉の成長と同じ道をたどる。

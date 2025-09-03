@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // イカダ
 class Raft

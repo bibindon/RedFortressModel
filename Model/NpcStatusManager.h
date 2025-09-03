@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include "ItemManager.h"
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // 糖質、タンパク質、脂質、ビタミン、ミネラルだけを状態に持つ
 // プレイヤーは五大栄養素がすべて0にならないようにする必要がある。

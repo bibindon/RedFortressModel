@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-namespace NSStarmanLib
+namespace NSModel
 {
 
 //------------------------------------------------------

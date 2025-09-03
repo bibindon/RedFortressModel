@@ -2,7 +2,7 @@
 #include "Util.h"
 #include <algorithm>
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 Guide* Guide::obj { nullptr };
 
@@ -204,7 +204,7 @@ void Guide::SetVisible(const std::wstring& category, const std::wstring& subCate
     }
 }
 
-void NSStarmanLib::Guide::SetVisible(const int id)
+void NSModel::Guide::SetVisible(const int id)
 {
     auto it = std::find_if(m_guideList.begin(), m_guideList.end(),
                            [&](GuideItem& x)

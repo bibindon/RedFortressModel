@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include "ItemManager.h"
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // クラフト用の素材クラス
 class CraftMaterial

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // TODO セーブデータの暗号化
 

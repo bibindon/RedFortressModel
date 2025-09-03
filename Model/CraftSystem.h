@@ -9,7 +9,7 @@
 #include "CraftInfoManager.h"
 #include <deque>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 
 // クラフト予約リストのアイテム

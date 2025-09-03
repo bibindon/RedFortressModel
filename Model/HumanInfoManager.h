@@ -6,7 +6,7 @@
 #include <vector>
 #include <unordered_map>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 class HumanInfo
 {

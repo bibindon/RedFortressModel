@@ -2,7 +2,7 @@
 #include "../Model/Voyage.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 namespace StarmanLibTest
 {

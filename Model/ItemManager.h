@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <map>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 
 // アイテムには耐久度があり、同じアイテムでも耐久度が異なることが可能。

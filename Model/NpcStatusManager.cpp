@@ -5,7 +5,7 @@
 #include "PowereggDateTime.h"
 #include "StatusManager.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 NpcStatusManager* NpcStatusManager::obj { nullptr };
 
@@ -109,104 +109,104 @@ bool NpcStatus::GetDead() const
     return m_dead;
 }
 
-void NSStarmanLib::NpcStatus::SetX(const float arg)
+void NSModel::NpcStatus::SetX(const float arg)
 {
     m_x = arg;
 }
 
-float NSStarmanLib::NpcStatus::GetX() const
+float NSModel::NpcStatus::GetX() const
 {
     return m_x;
 }
 
-void NSStarmanLib::NpcStatus::SetY(const float arg)
+void NSModel::NpcStatus::SetY(const float arg)
 {
     m_y = arg;
 }
 
-float NSStarmanLib::NpcStatus::GetY() const
+float NSModel::NpcStatus::GetY() const
 {
     return m_y;
 }
 
-void NSStarmanLib::NpcStatus::SetZ(const float arg)
+void NSModel::NpcStatus::SetZ(const float arg)
 {
     m_z = arg;
 }
 
-float NSStarmanLib::NpcStatus::GetZ() const
+float NSModel::NpcStatus::GetZ() const
 {
     return m_z;
 }
 
-void NSStarmanLib::NpcStatus::SetRotY(const float arg)
+void NSModel::NpcStatus::SetRotY(const float arg)
 {
     m_rotY = arg;
 }
 
-float NSStarmanLib::NpcStatus::GetRotY() const
+float NSModel::NpcStatus::GetRotY() const
 {
     return m_rotY;
 }
 
-void NSStarmanLib::NpcStatus::SetHasTalk(const bool arg)
+void NSModel::NpcStatus::SetHasTalk(const bool arg)
 {
     m_bHasTalk = arg;
 }
 
-bool NSStarmanLib::NpcStatus::GetHasTalk() const
+bool NSModel::NpcStatus::GetHasTalk() const
 {
     return m_bHasTalk;
 }
 
-void NSStarmanLib::NpcStatus::SetTalkCsv(const std::wstring& arg)
+void NSModel::NpcStatus::SetTalkCsv(const std::wstring& arg)
 {
     m_talkCsv = arg;
 }
 
-std::wstring NSStarmanLib::NpcStatus::GetTalkCsv() const
+std::wstring NSModel::NpcStatus::GetTalkCsv() const
 {
     return m_talkCsv;
 }
 
-void NSStarmanLib::NpcStatus::SetFeatureEnable(const bool arg)
+void NSModel::NpcStatus::SetFeatureEnable(const bool arg)
 {
     m_bFeatureEnable = arg;
 }
 
-bool NSStarmanLib::NpcStatus::GetFeatureEnable() const
+bool NSModel::NpcStatus::GetFeatureEnable() const
 {
     return m_bFeatureEnable;
 }
 
-void NSStarmanLib::NpcStatus::SetNpcFeature(const eNpcFeature arg)
+void NSModel::NpcStatus::SetNpcFeature(const eNpcFeature arg)
 {
     m_eNpcFeature = arg;
 }
 
-eNpcFeature NSStarmanLib::NpcStatus::GetNpcFeature() const
+eNpcFeature NSModel::NpcStatus::GetNpcFeature() const
 {
     return m_eNpcFeature;
 }
 
-void NSStarmanLib::NpcStatus::SetRedMan(const bool arg)
+void NSModel::NpcStatus::SetRedMan(const bool arg)
 {
     m_bRedman = arg;
 }
 
-bool NSStarmanLib::NpcStatus::IsRedMan() const
+bool NSModel::NpcStatus::IsRedMan() const
 {
     return m_bRedman;
 }
 
-void NSStarmanLib::NpcStatus::SetRedManDay(const int year, const int month, const int day)
+void NSModel::NpcStatus::SetRedManDay(const int year, const int month, const int day)
 {
     m_redManYear = year;
     m_redManMonth = month;
     m_redManDay = day;
 }
 
-void NSStarmanLib::NpcStatus::GetRedManDay(int* year, int* month, int* day)
+void NSModel::NpcStatus::GetRedManDay(int* year, int* month, int* day)
 {
     *year = m_redManYear;
     *month = m_redManMonth;
@@ -530,7 +530,7 @@ void NpcStatusManager::Save(const std::wstring& csvfile,
     Util::WriteToCsv(csvfile, vvs, encrypt);
 }
 
-void NSStarmanLib::NpcStatusManager::Update()
+void NSModel::NpcStatusManager::Update()
 {
     // １秒に１回呼ばれる想定
     {
@@ -871,7 +871,7 @@ void NSStarmanLib::NpcStatusManager::Update()
     Clamp();
 }
 
-void NSStarmanLib::NpcStatusManager::AdvanceTime(const int hour, const int minute)
+void NSModel::NpcStatusManager::AdvanceTime(const int hour, const int minute)
 {
     // 糖質、脂質、タンパク質、ミネラル、ビタミンはどれも20日で0になることとする。
     // １秒での消費量は100/20/24/60/60
@@ -939,7 +939,7 @@ void NpcStatusManager::SetNpcStatus(const std::wstring& key, const NpcStatus& va
     m_NpcStatusMap.at(key) = value;
 }
 
-std::vector<std::wstring> NSStarmanLib::NpcStatusManager::GetNameList()
+std::vector<std::wstring> NSModel::NpcStatusManager::GetNameList()
 {
     std::vector<std::wstring> vs;
     for (auto it = m_NpcStatusMap.begin(); it != m_NpcStatusMap.end(); ++it)
@@ -949,7 +949,7 @@ std::vector<std::wstring> NSStarmanLib::NpcStatusManager::GetNameList()
     return vs;
 }
 
-bool NSStarmanLib::NpcStatusManager::OneWeekAfterRedman()
+bool NSModel::NpcStatusManager::OneWeekAfterRedman()
 {
     bool result = false;
 
@@ -1021,7 +1021,7 @@ bool NSStarmanLib::NpcStatusManager::OneWeekAfterRedman()
     return false;
 }
 
-void NSStarmanLib::NpcStatusManager::Clamp()
+void NSModel::NpcStatusManager::Clamp()
 {
     for (auto& npc : m_NpcStatusMap)
     {
@@ -1094,7 +1094,7 @@ void NSStarmanLib::NpcStatusManager::Clamp()
     }
 }
 
-void NSStarmanLib::NpcStatusManager::Eat(const std::wstring npcKey, const ItemDef& itemDef)
+void NSModel::NpcStatusManager::Eat(const std::wstring npcKey, const ItemDef& itemDef)
 {
     auto& _status = m_NpcStatusMap.at(npcKey);
     if (itemDef.GetType() != ItemDef::ItemType::FOOD)

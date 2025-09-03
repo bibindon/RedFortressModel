@@ -10,7 +10,7 @@
 
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 float Status::GetBodyStaminaCurrent() const
 {
@@ -2449,7 +2449,7 @@ float StatusManager::GetDefensePower()
     return 1.0f * (GetExplosivePower() / 100.0f);
 }
 
-bool NSStarmanLib::StatusManager::IsUnderwater() const
+bool NSModel::StatusManager::IsUnderwater() const
 {
     return m_playerState == PlayerState::IDLE_WATER || m_playerState == PlayerState::SWIM;
 }
@@ -2984,7 +2984,7 @@ bool StatusManager::Sleep()
     return true;
 }
 
-bool NSStarmanLib::StatusManager::Rest3Hours()
+bool NSModel::StatusManager::Rest3Hours()
 {
     float magni = 1.0f;
 
@@ -3757,7 +3757,7 @@ void StatusManager::SetFractureArm(bool arg)
     m_status.SetFractureArm(arg);
 }
 
-int NSStarmanLib::StatusManager::GetFractureArmCureRemain() const
+int NSModel::StatusManager::GetFractureArmCureRemain() const
 {
     return m_remainArmFracCure;
 }
@@ -3777,7 +3777,7 @@ void StatusManager::SetFractureLeg(bool arg)
     m_status.SetFractureLeg(arg);
 }
 
-int NSStarmanLib::StatusManager::GetFractureLegCureRemain() const
+int NSModel::StatusManager::GetFractureLegCureRemain() const
 {
     return m_remainLegFracCure;
 }
@@ -3797,7 +3797,7 @@ void StatusManager::SetHeadache(bool arg)
     m_status.SetHeadache(arg);
 }
 
-int NSStarmanLib::StatusManager::GetHeadacheCureRemain() const
+int NSModel::StatusManager::GetHeadacheCureRemain() const
 {
     return m_remainHeadacheCure;
 }
@@ -3817,7 +3817,7 @@ void StatusManager::SetCold(bool arg)
     m_status.SetCold(arg);
 }
 
-int NSStarmanLib::StatusManager::GetColdCureRemain() const
+int NSModel::StatusManager::GetColdCureRemain() const
 {
     return m_remainColdCure;
 }
@@ -3837,7 +3837,7 @@ void StatusManager::SetStomachache(bool arg)
     m_status.SetStomachache(arg);
 }
 
-int NSStarmanLib::StatusManager::GetStomachacheCureRemain() const
+int NSModel::StatusManager::GetStomachacheCureRemain() const
 {
     return m_remainStomachacheCure;
 }
@@ -3867,7 +3867,7 @@ void StatusManager::SetDehydration(bool arg)
     m_status.SetDehydration(arg);
 }
 
-int NSStarmanLib::StatusManager::GetDehydrationCureRemain() const
+int NSModel::StatusManager::GetDehydrationCureRemain() const
 {
     return m_remainDehydration;
 }
@@ -3887,7 +3887,7 @@ void StatusManager::SetPlayerAction(const PlayerState arg)
     m_playerState = arg;
 }
 
-StatusManager::PlayerState NSStarmanLib::StatusManager::GetPlayerAction() const
+StatusManager::PlayerState NSModel::StatusManager::GetPlayerAction() const
 {
     return m_playerState;
 }
@@ -3912,7 +3912,7 @@ void StatusManager::SetEquipWeapon(const ItemInfo& arg)
     m_EquipWeapon = arg;
 }
 
-eBagPos NSStarmanLib::StatusManager::EquipBag(const ItemInfo& bag)
+eBagPos NSModel::StatusManager::EquipBag(const ItemInfo& bag)
 {
     // 背中１、背中２、腹、左手、右手の順で装備する。
 
@@ -3953,13 +3953,13 @@ eBagPos NSStarmanLib::StatusManager::EquipBag(const ItemInfo& bag)
     return result;
 }
 
-void NSStarmanLib::StatusManager::UnequipBag(const std::wstring& id, const int subId)
+void NSModel::StatusManager::UnequipBag(const std::wstring& id, const int subId)
 {
     auto bagPos = GetBag(id, subId);
     UnequipBag(bagPos);
 }
 
-void NSStarmanLib::StatusManager::UnequipBag(const eBagPos bagPos)
+void NSModel::StatusManager::UnequipBag(const eBagPos bagPos)
 {
     // 指定した位置の袋を外す
     //
@@ -4022,12 +4022,12 @@ void NSStarmanLib::StatusManager::UnequipBag(const eBagPos bagPos)
     Inventory::GetObj()->UpdateVolumeMax(GetAllBag());
 }
 
-ItemInfo NSStarmanLib::StatusManager::GetBag(const eBagPos bagPos) const
+ItemInfo NSModel::StatusManager::GetBag(const eBagPos bagPos) const
 {
     return m_BagMap.at(bagPos);
 }
 
-NSStarmanLib::eBagPos NSStarmanLib::StatusManager::GetBag(const std::wstring& id, const int subId) const
+NSModel::eBagPos NSModel::StatusManager::GetBag(const std::wstring& id, const int subId) const
 {
     eBagPos result = eBagPos::None;
     for (auto it = m_BagMap.begin(); it != m_BagMap.end(); ++it)
@@ -4040,7 +4040,7 @@ NSStarmanLib::eBagPos NSStarmanLib::StatusManager::GetBag(const std::wstring& id
     return result;
 }
 
-std::vector<ItemInfo> NSStarmanLib::StatusManager::GetAllBag()
+std::vector<ItemInfo> NSModel::StatusManager::GetAllBag()
 {
     std::vector<ItemInfo> result;
     for (auto it = m_BagMap.begin(); it != m_BagMap.end(); ++it)
@@ -4082,7 +4082,7 @@ std::vector<eBagPos> StatusManager::GetBagState()
     return result;
 }
 
-void NSStarmanLib::StatusManager::UpdateBagDurability()
+void NSModel::StatusManager::UpdateBagDurability()
 {
     auto inventory = Inventory::GetObj();
 
@@ -4183,17 +4183,17 @@ int StatusManager::GetLevelDark() const
     return m_levelDark;
 }
 
-void NSStarmanLib::StatusManager::SetDeadReason(const eDeadReason reason)
+void NSModel::StatusManager::SetDeadReason(const eDeadReason reason)
 {
     m_eDeadReason = reason;
 }
 
-eDeadReason NSStarmanLib::StatusManager::GetDeadReason() const
+eDeadReason NSModel::StatusManager::GetDeadReason() const
 {
     return m_eDeadReason;
 }
 
-void NSStarmanLib::StatusManager::ConsumeJumpCost()
+void NSModel::StatusManager::ConsumeJumpCost()
 {
     //--------------------------------
     // 消耗
@@ -4262,27 +4262,27 @@ void NSStarmanLib::StatusManager::ConsumeJumpCost()
     }
 }
 
-void NSStarmanLib::StatusManager::SetSugegasa(bool isEquip)
+void NSModel::StatusManager::SetSugegasa(bool isEquip)
 {
     m_bEquipSugegasa = isEquip;
 }
 
-bool NSStarmanLib::StatusManager::GetSugegasa() const
+bool NSModel::StatusManager::GetSugegasa() const
 {
     return m_bEquipSugegasa;
 }
 
-bool NSStarmanLib::StatusManager::IsStretcherMode() const
+bool NSModel::StatusManager::IsStretcherMode() const
 {
     return m_bStretcher;
 }
 
-void NSStarmanLib::StatusManager::SetStretcherMode(const bool arg)
+void NSModel::StatusManager::SetStretcherMode(const bool arg)
 {
     m_bStretcher = arg;
 }
 
-void NSStarmanLib::StatusManager::Clamp()
+void NSModel::StatusManager::Clamp()
 {
     float work1 = 0.f;
     float work2 = 0.f;

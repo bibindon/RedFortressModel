@@ -5,7 +5,7 @@
 
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 EnemyInfoManager* EnemyInfoManager::obj { nullptr };
 
@@ -238,7 +238,7 @@ void EnemyInfoManager::Save(const std::wstring& csvEnemyInfo,
 
             // データ本体を書き込む
             outFile.write(reinterpret_cast<const char*>(stEnemyList.data()),
-                          static_cast<std::streamsize>(size) * sizeof(NSStarmanLib::stEnemyInfo));
+                          static_cast<std::streamsize>(size) * sizeof(NSModel::stEnemyInfo));
 
             outFile.close();
         }
@@ -299,7 +299,7 @@ void EnemyInfoManager::UpdateEnemyInfo(const int serialNumber, const stEnemyInfo
     m_enemyInfoMap[serialNumber] = enemyInfo;
 }
 
-std::vector<std::wstring> NSStarmanLib::EnemyInfoManager::GetEnemyIdList()
+std::vector<std::wstring> NSModel::EnemyInfoManager::GetEnemyIdList()
 {
     std::vector<std::wstring> idList;
     for (auto it = m_enemyDefMap.begin(); it != m_enemyDefMap.end(); ++it)
@@ -317,7 +317,7 @@ std::vector<std::wstring> NSStarmanLib::EnemyInfoManager::GetEnemyIdList()
     return idList;
 }
 
-EnemyDef NSStarmanLib::EnemyInfoManager::GetEnemyDef(const std::wstring& id)
+EnemyDef NSModel::EnemyInfoManager::GetEnemyDef(const std::wstring& id)
 {
     EnemyDef enemyDef;
     for (auto it = m_enemyDefMap.begin(); it != m_enemyDefMap.end(); ++it)
@@ -331,7 +331,7 @@ EnemyDef NSStarmanLib::EnemyInfoManager::GetEnemyDef(const std::wstring& id)
     return enemyDef;
 }
 
-void NSStarmanLib::EnemyInfoManager::SetEnemyVisible(const std::wstring& id, const bool visible)
+void NSModel::EnemyInfoManager::SetEnemyVisible(const std::wstring& id, const bool visible)
 {
     for (auto it = m_enemyDefMap.begin(); it != m_enemyDefMap.end(); ++it)
     {
@@ -343,63 +343,63 @@ void NSStarmanLib::EnemyInfoManager::SetEnemyVisible(const std::wstring& id, con
     }
 }
 
-stEnemyInfo NSStarmanLib::EnemyInfoManager::GetEnemyInfo(const int serialNumber)
+stEnemyInfo NSModel::EnemyInfoManager::GetEnemyInfo(const int serialNumber)
 {
     return m_enemyInfoMap.at(serialNumber);
 }
 
-void NSStarmanLib::EnemyInfoManager::SetDefeat(const int serialNumber)
+void NSModel::EnemyInfoManager::SetDefeat(const int serialNumber)
 {
     m_enemyInfoMap.at(serialNumber).m_bDefeated = true;
 }
 
-void NSStarmanLib::EnemyDef::SetID(const std::wstring& arg)
+void NSModel::EnemyDef::SetID(const std::wstring& arg)
 {
     m_id = arg;
 }
 
-std::wstring NSStarmanLib::EnemyDef::GetID() const
+std::wstring NSModel::EnemyDef::GetID() const
 {
     return m_id;
 }
 
-void NSStarmanLib::EnemyDef::SetName(const std::wstring& arg)
+void NSModel::EnemyDef::SetName(const std::wstring& arg)
 {
     m_name = arg;
 }
 
-std::wstring NSStarmanLib::EnemyDef::GetName() const
+std::wstring NSModel::EnemyDef::GetName() const
 {
     return m_name;
 }
 
-void NSStarmanLib::EnemyDef::SetDetail(const std::wstring& arg)
+void NSModel::EnemyDef::SetDetail(const std::wstring& arg)
 {
     m_detail = arg;
     m_detail.erase(std::remove(m_detail.begin(), m_detail.end(), '"'), m_detail.end());
 }
 
-std::wstring NSStarmanLib::EnemyDef::GetDetail() const
+std::wstring NSModel::EnemyDef::GetDetail() const
 {
     return m_detail;
 }
 
-void NSStarmanLib::EnemyDef::SetImagePath(const std::wstring& arg)
+void NSModel::EnemyDef::SetImagePath(const std::wstring& arg)
 {
     m_imagePath = arg;
 }
 
-std::wstring NSStarmanLib::EnemyDef::GetImagePath()
+std::wstring NSModel::EnemyDef::GetImagePath()
 {
     return m_imagePath;
 }
 
-void NSStarmanLib::EnemyDef::SetVisible(const bool arg)
+void NSModel::EnemyDef::SetVisible(const bool arg)
 {
     m_visible = arg;
 }
 
-bool NSStarmanLib::EnemyDef::GetVisible() const
+bool NSModel::EnemyDef::GetVisible() const
 {
     return m_visible;
 }

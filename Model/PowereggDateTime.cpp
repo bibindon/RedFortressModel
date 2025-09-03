@@ -4,7 +4,7 @@
 #include "NpcStatusManager.h"
 #include "Rynen.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 PowereggDateTime* PowereggDateTime::obj = nullptr;
 
@@ -157,7 +157,7 @@ int PowereggDateTime::GetSecond() const
     return m_second;
 }
 
-int NSStarmanLib::PowereggDateTime::DAY_OF_MONTH(const int arg) const
+int NSModel::PowereggDateTime::DAY_OF_MONTH(const int arg) const
 {
     return DAY_OF_MONTH_[arg];
 }
@@ -165,7 +165,7 @@ int NSStarmanLib::PowereggDateTime::DAY_OF_MONTH(const int arg) const
 // 日付同士の比較
 // 1年2月3日4時5分6秒と6年5月4日3時2分1秒のどちらが未来・過去かを判定するには
 // 010203040506 と 060504030201 という12桁の数値と見なして12桁の数値同士の比較を行えばよい
-bool NSStarmanLib::PowereggDateTime::FromPastToFuture(int year1, int month1, int day1,
+bool NSModel::PowereggDateTime::FromPastToFuture(int year1, int month1, int day1,
                                                       int hour1, int minute1, int second1,
                                                       int year2, int month2, int day2,
                                                       int hour2, int minute2, int second2)

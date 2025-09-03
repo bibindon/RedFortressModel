@@ -2,7 +2,7 @@
 
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 SkillManager* SkillManager::obj { nullptr };
 
@@ -208,7 +208,7 @@ float SkillManager::GetRange(const std::wstring& key, const int level)
     return range;
 }
 
-std::vector<std::wstring> NSStarmanLib::SkillManager::GetNameList()
+std::vector<std::wstring> NSModel::SkillManager::GetNameList()
 {
     std::vector<std::wstring> nameList;
 

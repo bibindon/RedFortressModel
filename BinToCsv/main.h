@@ -8,7 +8,7 @@
 
 static void WriteCsv(const std::wstring& binFile)
 {
-    std::vector<NSStarmanLib::stMapObj> stMapObjList;
+    std::vector<NSModel::stMapObj> stMapObjList;
 
     std::wifstream inFile(binFile, std::ios::binary);
     if (inFile.is_open() == false)
@@ -26,7 +26,7 @@ static void WriteCsv(const std::wstring& binFile)
 
     // データ本体を読み込む
     inFile.read(reinterpret_cast<wchar_t*>(stMapObjList.data()),
-                static_cast<std::streamsize>(size) * sizeof(NSStarmanLib::stMapObj));
+                static_cast<std::streamsize>(size) * sizeof(NSModel::stMapObj));
 
     inFile.close();
 

@@ -2,7 +2,7 @@
 #include "ItemManager.h"
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 CraftInfoManager* CraftInfoManager::obj { nullptr };
 
@@ -98,7 +98,7 @@ void CraftInfoManager::Init(const std::wstring& csvfileDefinition,
     m_init = true;
 }
 
-bool NSStarmanLib::CraftInfoManager::Inited() const
+bool NSModel::CraftInfoManager::Inited() const
 {
     return m_init;
 }
@@ -141,7 +141,7 @@ CraftInfo CraftInfoManager::GetCraftInfo(const CraftOutput& output)
 // そのため、levelという引数はもはや必要ない。
 // しかし、ダブルチェックの意味で残してある。
 // 不正なIDと強化値の組み合わせが来れば落ちる。（落ちてほしい）
-CraftInfo NSStarmanLib::CraftInfoManager::GetCraftInfo(const std::wstring& itemId,
+CraftInfo NSModel::CraftInfoManager::GetCraftInfo(const std::wstring& itemId,
                                                        const int num,
                                                        const int level)
 {
@@ -163,7 +163,7 @@ CraftInfo NSStarmanLib::CraftInfoManager::GetCraftInfo(const std::wstring& itemI
     return m_craftInfoList.at(i);
 }
 
-CraftInfo NSStarmanLib::CraftInfoManager::GetCraftInfoByID(const std::wstring& itemId)
+CraftInfo NSModel::CraftInfoManager::GetCraftInfoByID(const std::wstring& itemId)
 {
     std::size_t i = 0;
     for (; i < m_craftInfoList.size(); ++i)
@@ -177,12 +177,12 @@ CraftInfo NSStarmanLib::CraftInfoManager::GetCraftInfoByID(const std::wstring& i
     return m_craftInfoList.at(i);
 }
 
-void NSStarmanLib::CraftMaterial::SetId(const std::wstring& arg)
+void NSModel::CraftMaterial::SetId(const std::wstring& arg)
 {
     m_id = arg;
 }
 
-std::wstring NSStarmanLib::CraftMaterial::GetId() const
+std::wstring NSModel::CraftMaterial::GetId() const
 {
     return m_id;
 }
@@ -257,7 +257,7 @@ CraftMaterial CraftInfo::GetCraftMaterialDef(const int index)
     return m_materialDefList.at(index);
 }
 
-std::vector<CraftMaterial> NSStarmanLib::CraftInfo::GetCraftMaterialDef()
+std::vector<CraftMaterial> NSModel::CraftInfo::GetCraftMaterialDef()
 {
     std::vector<CraftMaterial> result;
     
@@ -268,12 +268,12 @@ std::vector<CraftMaterial> NSStarmanLib::CraftInfo::GetCraftMaterialDef()
     return result;
 }
 
-void NSStarmanLib::CraftInfo::SetCraftMaterial(std::vector<ItemInfo> items)
+void NSModel::CraftInfo::SetCraftMaterial(std::vector<ItemInfo> items)
 {
     m_materialList = items;
 }
 
-std::vector<ItemInfo> NSStarmanLib::CraftInfo::GetCraftMaterial()
+std::vector<ItemInfo> NSModel::CraftInfo::GetCraftMaterial()
 {
     return m_materialList;
 }

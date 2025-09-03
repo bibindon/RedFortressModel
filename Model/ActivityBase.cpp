@@ -3,9 +3,9 @@
 #include "Util.h"
 #include "Voyage.h"
 
-NSStarmanLib::ActivityBase* NSStarmanLib::ActivityBase::m_obj = nullptr;
+NSModel::ActivityBase* NSModel::ActivityBase::m_obj = nullptr;
 
-NSStarmanLib::ActivityBase* NSStarmanLib::ActivityBase::Get()
+NSModel::ActivityBase* NSModel::ActivityBase::Get()
 {
     if (m_obj == nullptr)
     {
@@ -15,11 +15,11 @@ NSStarmanLib::ActivityBase* NSStarmanLib::ActivityBase::Get()
     return m_obj;
 }
 
-NSStarmanLib::ActivityBase::ActivityBase()
+NSModel::ActivityBase::ActivityBase()
 {
 }
 
-void NSStarmanLib::ActivityBase::Init(const std::wstring& csvfile)
+void NSModel::ActivityBase::Init(const std::wstring& csvfile)
 {
     std::vector<std::vector<std::wstring>> vvs = Util::ReadFromCsv(csvfile, false);
 
@@ -44,7 +44,7 @@ void NSStarmanLib::ActivityBase::Init(const std::wstring& csvfile)
 
 }
 
-void NSStarmanLib::ActivityBase::Save(const std::wstring& csvfile)
+void NSModel::ActivityBase::Save(const std::wstring& csvfile)
 {
     std::vector<std::vector<std::wstring>> vvs;
     std::vector<std::wstring> vs;
@@ -77,23 +77,23 @@ void NSStarmanLib::ActivityBase::Save(const std::wstring& csvfile)
     Util::WriteToCsv(csvfile, vvs, false);
 }
 
-void NSStarmanLib::ActivityBase::SetBaseType(const eBaseType arg)
+void NSModel::ActivityBase::SetBaseType(const eBaseType arg)
 {
         m_eBaseType = arg;
 }
 
-NSStarmanLib::eBaseType NSStarmanLib::ActivityBase::GetBaseType() const
+NSModel::eBaseType NSModel::ActivityBase::GetBaseType() const
 {
     return m_eBaseType;
 }
 
-void NSStarmanLib::ActivityBase::Finalize()
+void NSModel::ActivityBase::Finalize()
 {
     delete ActivityBase::m_obj;
     ActivityBase::m_obj = nullptr;
 }
 
-void NSStarmanLib::ActivityBase::GetPierPos(const eBaseType baseType, float* x, float* y, float* z)
+void NSModel::ActivityBase::GetPierPos(const eBaseType baseType, float* x, float* y, float* z)
 {
     if (baseType == eBaseType::Precision)
     {
@@ -109,7 +109,7 @@ void NSStarmanLib::ActivityBase::GetPierPos(const eBaseType baseType, float* x, 
     }
 }
 
-bool NSStarmanLib::ActivityBase::CheckRaftNearPier(const float x, const float y, const float z)
+bool NSModel::ActivityBase::CheckRaftNearPier(const float x, const float y, const float z)
 {
     float x2, y2, z2;
     GetPierPos(m_eBaseType, &x2, &y2, &z2);
@@ -117,7 +117,7 @@ bool NSStarmanLib::ActivityBase::CheckRaftNearPier(const float x, const float y,
     return Util::HitByBoundingBox(x, y, z, x2, y2, z2, 5.f);
 }
 
-bool NSStarmanLib::ActivityBase::CheckRaftExist()
+bool NSModel::ActivityBase::CheckRaftExist()
 {
     auto raftList = Voyage::Get()->GetRaftList();
 

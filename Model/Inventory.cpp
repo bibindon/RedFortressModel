@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 Inventory* Inventory::obj { nullptr };
 
@@ -68,7 +68,7 @@ void Inventory::Init(const std::wstring& csvfile,
     m_inited = true;
 }
 
-bool NSStarmanLib::Inventory::Inited()
+bool NSModel::Inventory::Inited()
 {
     return m_inited;
 }
@@ -200,7 +200,7 @@ int Inventory::AddItem(const std::wstring& id, const int durability)
     return newSubId;
 }
 
-void NSStarmanLib::Inventory::AddItemWithSubID(const std::wstring& id, const int subId, const int durability)
+void NSModel::Inventory::AddItemWithSubID(const std::wstring& id, const int subId, const int durability)
 {
     ItemInfo itemInfo;
     itemInfo.SetId(id);
@@ -235,7 +235,7 @@ void Inventory::RemoveItem(const std::wstring& id, const int subId)
     StatusManager::GetObj()->SetBrainStaminaCurrent(brainStamina - 1.f);
 }
 
-void NSStarmanLib::Inventory::SetItemDurability(const std::wstring& id,
+void NSModel::Inventory::SetItemDurability(const std::wstring& id,
                                                 const int subId,
                                                 const int durability)
 {
@@ -249,7 +249,7 @@ void NSStarmanLib::Inventory::SetItemDurability(const std::wstring& id,
     }
 }
 
-bool NSStarmanLib::Inventory::ExistItem(const std::wstring& id, const int subId)
+bool NSModel::Inventory::ExistItem(const std::wstring& id, const int subId)
 {
     bool result = false;
 
@@ -264,7 +264,7 @@ bool NSStarmanLib::Inventory::ExistItem(const std::wstring& id, const int subId)
     return result;
 }
 
-ItemInfo NSStarmanLib::Inventory::GetItemInfo(const std::wstring& id, const int subId)
+ItemInfo NSModel::Inventory::GetItemInfo(const std::wstring& id, const int subId)
 {
     if (ExistItem(id, subId) == false)
     {
@@ -285,7 +285,7 @@ ItemInfo NSStarmanLib::Inventory::GetItemInfo(const std::wstring& id, const int 
 }
 
 // SubIDをリストで受け取る
-std::vector<int> NSStarmanLib::Inventory::GetSubIdList(const std::wstring& id)
+std::vector<int> NSModel::Inventory::GetSubIdList(const std::wstring& id)
 {
     std::vector<int> result;
     for (auto it = m_itemInfoList.begin(); it != m_itemInfoList.end(); ++it)
@@ -321,12 +321,12 @@ float Inventory::GetWeight()
     return m_weight;
 }
 
-std::list<ItemInfo> NSStarmanLib::Inventory::GetAllItem()
+std::list<ItemInfo> NSModel::Inventory::GetAllItem()
 {
     return m_itemInfoList;
 }
 
-float NSStarmanLib::Inventory::CalcVolume()
+float NSModel::Inventory::CalcVolume()
 {
     float result = 0.f;
     ItemManager* itemManager = ItemManager::GetObj();
@@ -345,12 +345,12 @@ float NSStarmanLib::Inventory::CalcVolume()
     return result;
 }
 
-float NSStarmanLib::Inventory::GetVolume() const
+float NSModel::Inventory::GetVolume() const
 {
     return m_volumeCurrent;
 }
 
-void NSStarmanLib::Inventory::UpdateVolumeMax(const std::vector<ItemInfo>& bagMap)
+void NSModel::Inventory::UpdateVolumeMax(const std::vector<ItemInfo>& bagMap)
 {
     // 強化値0の袋→積載量3000mL
     // 強化値1の袋→積載量4000mL
@@ -400,12 +400,12 @@ void NSStarmanLib::Inventory::UpdateVolumeMax(const std::vector<ItemInfo>& bagMa
     }
 }
 
-float NSStarmanLib::Inventory::GetVolumeMax() const
+float NSModel::Inventory::GetVolumeMax() const
 {
     return m_volumeMax;
 }
 
-void NSStarmanLib::Inventory::ReduceEquipBagDurability()
+void NSModel::Inventory::ReduceEquipBagDurability()
 {
     auto allBag = StatusManager::GetObj()->GetAllBag();
 
@@ -447,7 +447,7 @@ float Inventory::CalcWeight()
     return result;
 }
 
-void NSStarmanLib::Inventory::Sort()
+void NSModel::Inventory::Sort()
 {
     m_itemInfoList.sort([](const ItemInfo& lhs, const ItemInfo& rhs)
                         {

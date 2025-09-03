@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 
 enum class eBaseType

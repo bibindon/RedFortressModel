@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <string>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // ライネンという契約を管理するクラス
 // 悪魔と契約すると魔法が使えるようになり、ワードブレスという小瓶で死んでも復活できるようになる。

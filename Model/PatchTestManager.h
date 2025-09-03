@@ -3,7 +3,7 @@
 #include <vector>
 #include <map>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 
 class PatchTest

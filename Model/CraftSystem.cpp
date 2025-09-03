@@ -8,7 +8,7 @@
 #include "StatusManager.h"
 #include "WeaponManager.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 CraftSystem* CraftSystem::obj { nullptr };
 
@@ -183,7 +183,7 @@ void CraftSystem::Init(const std::wstring& csvfileSkill, const std::wstring& csv
     }
 }
 
-void NSStarmanLib::CraftSystem::Save(const std::wstring& csvfileSkill,
+void NSModel::CraftSystem::Save(const std::wstring& csvfileSkill,
                                      const std::wstring& csvfileQueue,
                                      const bool encrypt)
 {
@@ -340,7 +340,7 @@ void NSStarmanLib::CraftSystem::Save(const std::wstring& csvfileSkill,
     }
 }
 
-void NSStarmanLib::CraftSystem::SetCraftsmanSkill(const std::wstring& unreinforcedId, const int level)
+void NSModel::CraftSystem::SetCraftsmanSkill(const std::wstring& unreinforcedId, const int level)
 {
     // +3の石斧を作れるようにする場合は、+0, +1, +2の石斧も作れるようにする。
     for (auto it = m_craftSkillList.begin(); it != m_craftSkillList.end(); ++it)
@@ -356,7 +356,7 @@ void NSStarmanLib::CraftSystem::SetCraftsmanSkill(const std::wstring& unreinforc
 }
 
 // アイテムのIDは強化値によってraft, raft1, raft2のように変わる。
-int NSStarmanLib::CraftSystem::GetCraftsmanSkill(const std::wstring& unreinforcedId)
+int NSModel::CraftSystem::GetCraftsmanSkill(const std::wstring& unreinforcedId)
 {
     // ＋１の石斧と＋２の石斧が作れて、＋３の石斧が作れないなら2を返す。
     // （craftItemの作れるアイテムの中で最高レベルの数値を返す。）
@@ -376,7 +376,7 @@ int NSStarmanLib::CraftSystem::GetCraftsmanSkill(const std::wstring& unreinforce
     return level;
 }
 
-bool NSStarmanLib::CraftSystem::QueueCraftRequest(const std::wstring& itemId,
+bool NSModel::CraftSystem::QueueCraftRequest(const std::wstring& itemId,
                                                   std::wstring* errMsg,
                                                   const int storehouseId,
                                                   const int num)
@@ -540,7 +540,7 @@ bool NSStarmanLib::CraftSystem::QueueCraftRequest(const std::wstring& itemId,
     return true;
 }
 
-bool NSStarmanLib::CraftSystem::CancelCraftStart(const int index)
+bool NSModel::CraftSystem::CancelCraftStart(const int index)
 {
     if ((int)m_craftRequestList.size() <= index)
     {
@@ -567,7 +567,7 @@ bool NSStarmanLib::CraftSystem::CancelCraftStart(const int index)
     return true;
 }
 
-void NSStarmanLib::CraftSystem::UpdateCraftStatus()
+void NSModel::CraftSystem::UpdateCraftStatus()
 {
     // リクエストがないならやることなし
     if (m_craftRequestList.size() == 0)
@@ -791,7 +791,7 @@ void NSStarmanLib::CraftSystem::UpdateCraftStatus()
     }
 }
 
-void NSStarmanLib::CraftSystem::StartCraft()
+void NSModel::CraftSystem::StartCraft()
 {
     //-----------------------------------------------
     // 袋のクラフトを3件予約したとする。
@@ -891,7 +891,7 @@ void NSStarmanLib::CraftSystem::StartCraft()
     }
 }
 
-int NSStarmanLib::CraftSystem::GetProgress()
+int NSModel::CraftSystem::GetProgress()
 {
     if (m_craftRequestList.front().GetCrafting() == false)
     {
@@ -937,7 +937,7 @@ int NSStarmanLib::CraftSystem::GetProgress()
     return progress;
 }
 
-std::list<CraftRequest> NSStarmanLib::CraftSystem::GetCraftRequestList()
+std::list<CraftRequest> NSModel::CraftSystem::GetCraftRequestList()
 {
     return m_craftRequestList;
 }
@@ -947,12 +947,12 @@ std::wstring CraftRequest::GetId() const
     return m_craftInfo.GetOutput().GetItemId();
 }
 
-int NSStarmanLib::CraftRequest::GetNumber() const
+int NSModel::CraftRequest::GetNumber() const
 {
     return m_craftInfo.GetOutput().GetNumber();
 }
 
-int NSStarmanLib::CraftRequest::GetLevel() const
+int NSModel::CraftRequest::GetLevel() const
 {
     return m_craftInfo.GetOutput().GetLevel();
 }
@@ -1077,82 +1077,82 @@ void CraftRequest::SetFinishSecond(int mfinishSecond)
     m_finishSecond = mfinishSecond;
 }
 
-int NSStarmanLib::CraftRequest::GetStorehouseId() const
+int NSModel::CraftRequest::GetStorehouseId() const
 {
     return m_storehouseId;
 }
 
-void NSStarmanLib::CraftRequest::SetStorehouseId(const int id)
+void NSModel::CraftRequest::SetStorehouseId(const int id)
 {
     m_storehouseId = id;
 }
 
-CraftInfo NSStarmanLib::CraftRequest::GetCraftInfo() const
+CraftInfo NSModel::CraftRequest::GetCraftInfo() const
 {
     return m_craftInfo;
 }
 
-void NSStarmanLib::CraftRequest::SetCraftInfo(const CraftInfo& arg)
+void NSModel::CraftRequest::SetCraftInfo(const CraftInfo& arg)
 {
     m_craftInfo = arg;
 }
 
-bool NSStarmanLib::CraftRequest::GetCrafting() const
+bool NSModel::CraftRequest::GetCrafting() const
 {
     return m_crafting;
 }
 
-void NSStarmanLib::CraftRequest::SetCrafting(const bool arg)
+void NSModel::CraftRequest::SetCrafting(const bool arg)
 {
     m_crafting = arg;
 }
 
-void NSStarmanLib::CraftSkill::SetId(const std::wstring& arg)
+void NSModel::CraftSkill::SetId(const std::wstring& arg)
 {
     m_id = arg;
 }
 
-std::wstring NSStarmanLib::CraftSkill::GetId() const
+std::wstring NSModel::CraftSkill::GetId() const
 {
     return m_id;
 }
 
-void NSStarmanLib::CraftSkill::SetLevel(const int arg)
+void NSModel::CraftSkill::SetLevel(const int arg)
 {
     m_level = arg;
 }
 
-int NSStarmanLib::CraftSkill::GetLevel() const
+int NSModel::CraftSkill::GetLevel() const
 {
     return m_level;
 }
 
-void NSStarmanLib::CraftSkill::SetEnable(const bool arg)
+void NSModel::CraftSkill::SetEnable(const bool arg)
 {
     m_enable = arg;
 }
 
-bool NSStarmanLib::CraftSkill::GetEnable() const
+bool NSModel::CraftSkill::GetEnable() const
 {
     return m_enable;
 }
 
-void NSStarmanLib::CraftSkill::SetLevelUpNecessity(const int arg)
+void NSModel::CraftSkill::SetLevelUpNecessity(const int arg)
 {
     m_levelUpNecessity = arg;
 }
 
-int NSStarmanLib::CraftSkill::GetLevelUpNecessity() const
+int NSModel::CraftSkill::GetLevelUpNecessity() const
 {
     return m_levelUpNecessity;
 }
 
-void NSStarmanLib::CraftSkill::SetSuccessNum(const int arg)
+void NSModel::CraftSkill::SetSuccessNum(const int arg)
 {
     m_successNum = arg;
 }
 
-int NSStarmanLib::CraftSkill::GetSuccessNum() const
+int NSModel::CraftSkill::GetSuccessNum() const
 {
     return m_successNum;
 }

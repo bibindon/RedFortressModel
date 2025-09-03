@@ -7,7 +7,7 @@
 #include <vector>
 #include <unordered_map>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // プレイヤーの所持品を管理するクラス。
 // アイテムの定義はItemManagerが管理している。

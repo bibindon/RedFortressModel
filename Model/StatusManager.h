@@ -9,7 +9,7 @@
 
 // 武器を装備していない場合、アイテムIDに-1が入っている。
 
-namespace NSStarmanLib
+namespace NSModel
 {
 enum class eMagicType
 {

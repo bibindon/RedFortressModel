@@ -8,11 +8,11 @@
 #include "StatusManager.h"
 #include <cassert>
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 PatchTestManager* PatchTestManager::m_obj = nullptr;
 
-PatchTestManager* NSStarmanLib::PatchTestManager::Get()
+PatchTestManager* NSModel::PatchTestManager::Get()
 {
     if (m_obj == nullptr)
     {
@@ -22,13 +22,13 @@ PatchTestManager* NSStarmanLib::PatchTestManager::Get()
     return m_obj;
 }
 
-void NSStarmanLib::PatchTestManager::Destroy()
+void NSModel::PatchTestManager::Destroy()
 {
     delete m_obj;
     m_obj = nullptr;
 }
 
-void NSStarmanLib::PatchTestManager::Init(const std::wstring& originFile,
+void NSModel::PatchTestManager::Init(const std::wstring& originFile,
                                           const std::wstring& saveFileInfo,
                                           const std::wstring& saveFileQue)
 {
@@ -235,7 +235,7 @@ void NSStarmanLib::PatchTestManager::Init(const std::wstring& originFile,
     }
 }
 
-void NSStarmanLib::PatchTestManager::Save(const std::wstring& csvfileInfo,
+void NSModel::PatchTestManager::Save(const std::wstring& csvfileInfo,
                                           const std::wstring& csvfileQue)
 {
     {
@@ -375,7 +375,7 @@ void NSStarmanLib::PatchTestManager::Save(const std::wstring& csvfileInfo,
     }
 }
 
-void NSStarmanLib::PatchTestManager::Update()
+void NSModel::PatchTestManager::Update()
 {
     if (PowereggDateTime::GetObj() == nullptr)
     {
@@ -543,7 +543,7 @@ void NSStarmanLib::PatchTestManager::Update()
     }
 }
 
-bool NSStarmanLib::PatchTestManager::QueuePatchTest(const std::wstring& id)
+bool NSModel::PatchTestManager::QueuePatchTest(const std::wstring& id)
 {
     auto it = m_infoMap.find(id);
     if (it == m_infoMap.end())
@@ -589,13 +589,13 @@ bool NSStarmanLib::PatchTestManager::QueuePatchTest(const std::wstring& id)
     return true;
 }
 
-std::vector<PatchTest> NSStarmanLib::PatchTestManager::GetQueue()
+std::vector<PatchTest> NSModel::PatchTestManager::GetQueue()
 {
     return m_PatchTestQue;
 }
 
 // 先頭が一番新しく、末尾に向かうほど古いテスト結果
-std::vector<PatchTest> NSStarmanLib::PatchTestManager::GetResultList(const std::wstring& id)
+std::vector<PatchTest> NSModel::PatchTestManager::GetResultList(const std::wstring& id)
 {
     std::vector<PatchTest> resultList;
 
@@ -613,12 +613,12 @@ std::vector<PatchTest> NSStarmanLib::PatchTestManager::GetResultList(const std::
     return resultList;
 }
 
-std::vector<std::wstring> NSStarmanLib::PatchTestManager::GetKeyList()
+std::vector<std::wstring> NSModel::PatchTestManager::GetKeyList()
 {
     return m_keyList;
 }
 
-std::wstring NSStarmanLib::PatchTestManager::GetPoisonPlant()
+std::wstring NSModel::PatchTestManager::GetPoisonPlant()
 {
     std::wstring poisonPlant;
     for (auto it = m_infoMap.begin(); it != m_infoMap.end(); ++it)
@@ -633,27 +633,27 @@ std::wstring NSStarmanLib::PatchTestManager::GetPoisonPlant()
     return poisonPlant;
 }
 
-void NSStarmanLib::PatchTest::SetItemName(const std::wstring& arg)
+void NSModel::PatchTest::SetItemName(const std::wstring& arg)
 {
     m_itemName = arg;
 }
 
-std::wstring NSStarmanLib::PatchTest::GetItemName() const
+std::wstring NSModel::PatchTest::GetItemName() const
 {
     return m_itemName;
 }
 
-void NSStarmanLib::PatchTest::SetItemId(const std::wstring& arg)
+void NSModel::PatchTest::SetItemId(const std::wstring& arg)
 {
     m_itemId = arg;
 }
 
-std::wstring NSStarmanLib::PatchTest::GetItemId() const
+std::wstring NSModel::PatchTest::GetItemId() const
 {
     return m_itemId;
 }
 
-void NSStarmanLib::PatchTest::SetDateTimeReq(const int y, const int M, const int d,
+void NSModel::PatchTest::SetDateTimeReq(const int y, const int M, const int d,
                                              const int h, const int m, const int s)
 {
     m_yearReq = y;
@@ -665,7 +665,7 @@ void NSStarmanLib::PatchTest::SetDateTimeReq(const int y, const int M, const int
     m_secondReq = s;
 }
 
-void NSStarmanLib::PatchTest::GetDateTimeReq(int* y, int* M, int* d, int* h, int* m, int* s)
+void NSModel::PatchTest::GetDateTimeReq(int* y, int* M, int* d, int* h, int* m, int* s)
 {
     *y = m_yearReq;
     *M = m_monthReq;
@@ -676,7 +676,7 @@ void NSStarmanLib::PatchTest::GetDateTimeReq(int* y, int* M, int* d, int* h, int
     *s = m_secondReq;
 }
 
-void NSStarmanLib::PatchTest::SetDateTimeStart(int y, int M, int d, int h, int m, int s)
+void NSModel::PatchTest::SetDateTimeStart(int y, int M, int d, int h, int m, int s)
 {
     m_yearStart = y;
     m_monthStart = M;
@@ -687,7 +687,7 @@ void NSStarmanLib::PatchTest::SetDateTimeStart(int y, int M, int d, int h, int m
     m_secondStart = s;
 }
 
-void NSStarmanLib::PatchTest::GetDateTimeStart(int* y, int* M, int* d, int* h, int* m, int* s)
+void NSModel::PatchTest::GetDateTimeStart(int* y, int* M, int* d, int* h, int* m, int* s)
 {
     *y = m_yearStart;
     *M = m_monthStart;
@@ -698,7 +698,7 @@ void NSStarmanLib::PatchTest::GetDateTimeStart(int* y, int* M, int* d, int* h, i
     *s = m_secondStart;
 }
 
-void NSStarmanLib::PatchTest::SetDateTimeEnd(int y, int M, int d, int h, int m, int s)
+void NSModel::PatchTest::SetDateTimeEnd(int y, int M, int d, int h, int m, int s)
 {
     m_yearEnd = y;
     m_monthEnd = M;
@@ -709,7 +709,7 @@ void NSStarmanLib::PatchTest::SetDateTimeEnd(int y, int M, int d, int h, int m, 
     m_secondEnd = s;
 }
 
-void NSStarmanLib::PatchTest::GetDateTimeEnd(int* y, int* M, int* d, int* h, int* m, int* s)
+void NSModel::PatchTest::GetDateTimeEnd(int* y, int* M, int* d, int* h, int* m, int* s)
 {
     *y = m_yearEnd;
     *M = m_monthEnd;
@@ -720,72 +720,72 @@ void NSStarmanLib::PatchTest::GetDateTimeEnd(int* y, int* M, int* d, int* h, int
     *s = m_secondEnd;
 }
 
-void NSStarmanLib::PatchTest::SetState(const eState arg)
+void NSModel::PatchTest::SetState(const eState arg)
 {
     m_eState = arg;
 }
 
-PatchTest::eState NSStarmanLib::PatchTest::GetState() const
+PatchTest::eState NSModel::PatchTest::GetState() const
 {
     return m_eState;
 }
 
-void NSStarmanLib::PatchTest::SetResult(const eResult result)
+void NSModel::PatchTest::SetResult(const eResult result)
 {
     m_eResult = result;
 }
 
-PatchTest::eResult NSStarmanLib::PatchTest::GetResult() const
+PatchTest::eResult NSModel::PatchTest::GetResult() const
 {
     return m_eResult;
 }
 
-void NSStarmanLib::PatchItemInfo::SetName(const std::wstring arg)
+void NSModel::PatchItemInfo::SetName(const std::wstring arg)
 {
     m_name = arg;
 }
 
-std::wstring NSStarmanLib::PatchItemInfo::GetName() const
+std::wstring NSModel::PatchItemInfo::GetName() const
 {
     return m_name;
 }
 
-void NSStarmanLib::PatchItemInfo::SetItemId(const std::wstring& arg)
+void NSModel::PatchItemInfo::SetItemId(const std::wstring& arg)
 {
     m_itemId = arg;
 }
 
-std::wstring NSStarmanLib::PatchItemInfo::GetItemId() const
+std::wstring NSModel::PatchItemInfo::GetItemId() const
 {
     return m_itemId;
 }
 
-void NSStarmanLib::PatchItemInfo::SetPoison(const bool arg)
+void NSModel::PatchItemInfo::SetPoison(const bool arg)
 {
     m_poison = arg;
 }
 
-bool NSStarmanLib::PatchItemInfo::GetPoison() const
+bool NSModel::PatchItemInfo::GetPoison() const
 {
     return m_poison;
 }
 
-void NSStarmanLib::PatchItemInfo::SetTryNum(const int arg)
+void NSModel::PatchItemInfo::SetTryNum(const int arg)
 {
     m_tryNum = arg;
 }
 
-int NSStarmanLib::PatchItemInfo::GetTryNum()
+int NSModel::PatchItemInfo::GetTryNum()
 {
     return m_tryNum;
 }
 
-void NSStarmanLib::PatchItemInfo::SetAccurate(const float arg)
+void NSModel::PatchItemInfo::SetAccurate(const float arg)
 {
     m_accurate = arg;
 }
 
-float NSStarmanLib::PatchItemInfo::GetAccurate() const
+float NSModel::PatchItemInfo::GetAccurate() const
 {
     return m_accurate;
 }

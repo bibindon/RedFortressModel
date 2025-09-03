@@ -29,10 +29,10 @@ void WriteBinaryFromMapObj(const std::wstring& csvFile)
 {
     auto vvs = csv::Read(csvFile);
 
-    std::vector<NSStarmanLib::stMapObj> stMapObjList;
+    std::vector<NSModel::stMapObj> stMapObjList;
     for (std::size_t i = 1; i < vvs.size(); ++i)
     {
-        NSStarmanLib::stMapObj work;
+        NSModel::stMapObj work;
         float work_f = 0.f;
 
         work.m_id = std::stoi(vvs.at(i).at(0));
@@ -77,7 +77,7 @@ void WriteBinaryFromMapObj(const std::wstring& csvFile)
 
         // データ本体を書き込む
         outFile.write(reinterpret_cast<const char*>(stMapObjList.data()),
-                      static_cast<std::streamsize>(size) * sizeof(NSStarmanLib::stMapObj));
+                      static_cast<std::streamsize>(size) * sizeof(NSModel::stMapObj));
 
         outFile.close();
     }
@@ -91,10 +91,10 @@ void WriteBinaryFromEnemy(const std::wstring& csvFile)
 {
     auto vvs = csv::Read(csvFile);
 
-    std::vector<NSStarmanLib::stEnemyInfo> stEnemyList;
+    std::vector<NSModel::stEnemyInfo> stEnemyList;
     for (std::size_t i = 1; i < vvs.size(); ++i)
     {
-        NSStarmanLib::stEnemyInfo work;
+        NSModel::stEnemyInfo work;
         float work_f = 0.f;
 
         work.m_SerialNumber = std::stoi(vvs.at(i).at(0));
@@ -133,7 +133,7 @@ void WriteBinaryFromEnemy(const std::wstring& csvFile)
 
         // データ本体を書き込む
         outFile.write(reinterpret_cast<const char*>(stEnemyList.data()),
-                      static_cast<std::streamsize>(size) * sizeof(NSStarmanLib::stEnemyInfo));
+                      static_cast<std::streamsize>(size) * sizeof(NSModel::stEnemyInfo));
 
         outFile.close();
     }

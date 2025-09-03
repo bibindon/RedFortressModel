@@ -15,7 +15,7 @@
 // クラフト中は受け取れない。
 // 16時以降に話しかけたら受け取れる。
 //-------------------------------------------------
-namespace NSStarmanLib
+namespace NSModel
 {
 class Help
 {

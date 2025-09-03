@@ -5,7 +5,7 @@
 #include "ActivityBase.h"
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 Voyage* Voyage::m_single = nullptr;
 
@@ -19,7 +19,7 @@ Voyage* Voyage::Get()
     return m_single;
 }
 
-void NSStarmanLib::Voyage::Destroy()
+void NSModel::Voyage::Destroy()
 {
     delete Voyage::m_single;
     Voyage::m_single = nullptr;
@@ -260,7 +260,7 @@ std::vector<Raft> Voyage::GetRaftList()
     return m_raftList;
 }
 
-Raft NSStarmanLib::Voyage::GetRaft(const int id)
+Raft NSModel::Voyage::GetRaft(const int id)
 {
     auto it = std::find_if(m_raftList.begin(), m_raftList.end(),
                            [&](const Raft& raft)
@@ -292,12 +292,12 @@ Raft Voyage::GetRaftCurrent()
     return *it;
 }
 
-int NSStarmanLib::Voyage::GetRaftCurrentId() const
+int NSModel::Voyage::GetRaftCurrentId() const
 {
     return m_currentRaftId;
 }
 
-void NSStarmanLib::Voyage::SetRaftCurrentId(const int arg)
+void NSModel::Voyage::SetRaftCurrentId(const int arg)
 {
     m_currentRaftId = arg;
 }
@@ -484,13 +484,13 @@ bool Voyage::CheckRaftBroken()
     return false;
 }
 
-void NSStarmanLib::Voyage::CollideGround()
+void NSModel::Voyage::CollideGround()
 {
     auto dura = GetRaftCurrentPriv()->GetDurability();
     GetRaftCurrentPriv()->SetDurability(dura - 100);
 }
 
-void NSStarmanLib::Voyage::ResetWindAndTide()
+void NSModel::Voyage::ResetWindAndTide()
 {
     {
         {

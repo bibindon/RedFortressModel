@@ -3,9 +3,9 @@
 #include "Util.h"
 #include <fstream>
 
-NSStarmanLib::MapObjManager* NSStarmanLib::MapObjManager::obj = nullptr;
+NSModel::MapObjManager* NSModel::MapObjManager::obj = nullptr;
 
-NSStarmanLib::MapObjManager* NSStarmanLib::MapObjManager::GetObj()
+NSModel::MapObjManager* NSModel::MapObjManager::GetObj()
 {
     if (obj == nullptr)
     {
@@ -14,7 +14,7 @@ NSStarmanLib::MapObjManager* NSStarmanLib::MapObjManager::GetObj()
     return obj;
 }
 
-void NSStarmanLib::MapObjManager::Init(const std::wstring& csvfile,
+void NSModel::MapObjManager::Init(const std::wstring& csvfile,
                                        const std::wstring& csvModelId,
                                        const bool decrypt)
 {
@@ -67,12 +67,12 @@ void NSStarmanLib::MapObjManager::Init(const std::wstring& csvfile,
     }
 }
 
-void NSStarmanLib::MapObjManager::InitWithBinary(const std::wstring& binFile,
+void NSModel::MapObjManager::InitWithBinary(const std::wstring& binFile,
                                                  const std::wstring& csvModelId,
                                                  const bool decrypt)
 {
     {
-        std::vector<NSStarmanLib::stMapObj> stMapObjList;
+        std::vector<NSModel::stMapObj> stMapObjList;
 
         std::ifstream inFile(binFile, std::ios::binary);
         if (!inFile.is_open())
@@ -90,7 +90,7 @@ void NSStarmanLib::MapObjManager::InitWithBinary(const std::wstring& binFile,
 
         // データ本体を読み込む
         inFile.read(reinterpret_cast<char*>(stMapObjList.data()),
-                    static_cast<std::streamsize>(size) * sizeof(NSStarmanLib::stMapObj));
+                    static_cast<std::streamsize>(size) * sizeof(NSModel::stMapObj));
 
         inFile.close();
 
@@ -115,7 +115,7 @@ void NSStarmanLib::MapObjManager::InitWithBinary(const std::wstring& binFile,
     }
 }
 
-void NSStarmanLib::MapObjManager::Save(const std::wstring& csvfile,
+void NSModel::MapObjManager::Save(const std::wstring& csvfile,
                                        const bool encrypt)
 {
     std::vector<stMapObj> work;
@@ -177,7 +177,7 @@ void NSStarmanLib::MapObjManager::Save(const std::wstring& csvfile,
     Util::WriteToCsv(csvfile, vvs, encrypt);
 }
 
-void NSStarmanLib::MapObjManager::SaveWithBinary(const std::wstring& binFile)
+void NSModel::MapObjManager::SaveWithBinary(const std::wstring& binFile)
 {
     std::vector<stMapObj> stMapObjList;
 
@@ -208,20 +208,20 @@ void NSStarmanLib::MapObjManager::SaveWithBinary(const std::wstring& binFile)
 
         // データ本体を書き込む
         outFile.write(reinterpret_cast<char*>(stMapObjList.data()),
-                      static_cast<std::streamsize>(size) * sizeof(NSStarmanLib::stMapObj));
+                      static_cast<std::streamsize>(size) * sizeof(NSModel::stMapObj));
 
         outFile.close();
     }
 }
 
-void NSStarmanLib::MapObjManager::Destroy()
+void NSModel::MapObjManager::Destroy()
 {
     delete MapObjManager::obj;
     MapObjManager::obj = nullptr;
 }
 
-std::vector<NSStarmanLib::stMapObj>
-NSStarmanLib::MapObjManager::GetMapObjList(const float playerX,
+std::vector<NSModel::stMapObj>
+NSModel::MapObjManager::GetMapObjList(const float playerX,
                                            const float playerZ)
 {
     std::vector<stMapObj> result;
@@ -274,8 +274,8 @@ NSStarmanLib::MapObjManager::GetMapObjList(const float playerX,
     return result;
 }
 
-std::vector<NSStarmanLib::stMapObj>
-NSStarmanLib::MapObjManager::GetMapObjListR(const float playerX,
+std::vector<NSModel::stMapObj>
+NSModel::MapObjManager::GetMapObjListR(const float playerX,
                                             const float playerZ,
                                             const float r)
 {
@@ -305,7 +305,7 @@ NSStarmanLib::MapObjManager::GetMapObjListR(const float playerX,
     return work2;
 }
 
-void NSStarmanLib::MapObjManager::GetMapObjListShow(const float playerX,
+void NSModel::MapObjManager::GetMapObjListShow(const float playerX,
                                                     const float playerZ,
                                                     std::vector<stMapObj>* needShow)
 {
@@ -322,7 +322,7 @@ void NSStarmanLib::MapObjManager::GetMapObjListShow(const float playerX,
     }
 }
 
-void NSStarmanLib::MapObjManager::GetMapObjListHide(const float playerX,
+void NSModel::MapObjManager::GetMapObjListHide(const float playerX,
                                                     const float playerZ,
                                                     std::vector<stMapObj>* needHide)
 {
@@ -484,7 +484,7 @@ void NSStarmanLib::MapObjManager::GetMapObjListHide(const float playerX,
     }
 }
 
-void NSStarmanLib::MapObjManager::SetShow(const int frame_x,
+void NSModel::MapObjManager::SetShow(const int frame_x,
                                           const int frame_z,
                                           const int id,
                                           const bool show)
@@ -502,7 +502,7 @@ void NSStarmanLib::MapObjManager::SetShow(const int frame_x,
     it->m_show = show;
 }
 
-void NSStarmanLib::MapObjManager::SetVisible(const int frame_x,
+void NSModel::MapObjManager::SetVisible(const int frame_x,
                                              const int frame_z,
                                              const int id,
                                              const bool visible)
@@ -520,12 +520,12 @@ void NSStarmanLib::MapObjManager::SetVisible(const int frame_x,
     it->m_visible = visible;
 }
 
-std::wstring NSStarmanLib::MapObjManager::GetModelName(const int id)
+std::wstring NSModel::MapObjManager::GetModelName(const int id)
 {
     return m_XnameMap.at(id);
 }
 
-int NSStarmanLib::MapObjManager::GetModelId(const std::wstring& name)
+int NSModel::MapObjManager::GetModelId(const std::wstring& name)
 {
     int id = -1;
     for (auto it = m_XnameMap.begin(); it != m_XnameMap.end(); ++it)
@@ -539,7 +539,7 @@ int NSStarmanLib::MapObjManager::GetModelId(const std::wstring& name)
     return id;
 }
 
-void NSStarmanLib::MapObjManager::ResetShow()
+void NSModel::MapObjManager::ResetShow()
 {
     for (auto& line : m_stMapObjMap)
     {

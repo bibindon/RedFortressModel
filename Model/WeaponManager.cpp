@@ -7,7 +7,7 @@
 #include "Util.h"
 #include "CraftInfoManager.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 WeaponManager* WeaponManager::obj;
 
@@ -320,7 +320,7 @@ int WeaponManager::GetDurabilityMax2(const std::wstring& weaponId, const int lev
     return it->GetDurabilityMax();
 }
 
-std::vector<std::wstring> NSStarmanLib::WeaponManager::GetWeaponNameList()
+std::vector<std::wstring> NSModel::WeaponManager::GetWeaponNameList()
 {
     std::vector<std::wstring> result;
     for (auto it = m_weaponDefMap.begin(); it != m_weaponDefMap.end(); ++it)
@@ -331,17 +331,17 @@ std::vector<std::wstring> NSStarmanLib::WeaponManager::GetWeaponNameList()
     return result;
 }
 
-bool NSStarmanLib::WeaponManager::IsTorchLit()
+bool NSModel::WeaponManager::IsTorchLit()
 {
     return m_torchLit;
 }
 
-void NSStarmanLib::WeaponManager::SetTorchLit(const bool lit)
+void NSModel::WeaponManager::SetTorchLit(const bool lit)
 {
     m_torchLit = lit;
 }
 //
-//std::wstring NSStarmanLib::WeaponManager::GetItemName(const std::wstring& weaponName) const
+//std::wstring NSModel::WeaponManager::GetItemName(const std::wstring& weaponName) const
 //{
 //    auto it = std::find_if(m_weaponDefMap.begin(), m_weaponDefMap.end(),
 //                           [&](const auto x)
@@ -532,12 +532,12 @@ void WeaponDefSub::SetWeaponId(const std::wstring& id)
     m_weaponId = id;
 }
 
-void NSStarmanLib::CraftOutput::SetItemId(const std::wstring& id)
+void NSModel::CraftOutput::SetItemId(const std::wstring& id)
 {
     m_id = id;
 }
 
-std::wstring NSStarmanLib::CraftOutput::GetItemId() const
+std::wstring NSModel::CraftOutput::GetItemId() const
 {
     return m_id;
 }

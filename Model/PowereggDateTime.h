@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 // ゲーム内の日付・時刻
 // パワーエッグ星では24時間で一日が経過し、ゲーム内では2時間で24時間が経過する。

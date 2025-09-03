@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-namespace NSStarmanLib
+namespace NSModel
 {
 class GuideItem
 {

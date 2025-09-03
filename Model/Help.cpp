@@ -8,11 +8,11 @@
 #include <time.h>
 #include <cassert>
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 Help* Help::m_obj = nullptr;
 
-Help* NSStarmanLib::Help::Get()
+Help* NSModel::Help::Get()
 {
     if (m_obj == nullptr)
     {
@@ -21,13 +21,13 @@ Help* NSStarmanLib::Help::Get()
     return m_obj;
 }
 
-void NSStarmanLib::Help::Destroy()
+void NSModel::Help::Destroy()
 {
     delete m_obj;
     m_obj = nullptr;
 }
 
-void NSStarmanLib::Help::Init(const std::wstring& filepath)
+void NSModel::Help::Init(const std::wstring& filepath)
 {
     assert(ItemManager::GetObj()->Inited());
 
@@ -100,7 +100,7 @@ void NSStarmanLib::Help::Init(const std::wstring& filepath)
 }
 
 // TODO NPCの健康状態を考慮
-void NSStarmanLib::Help::Update()
+void NSModel::Help::Update()
 {
     auto datetime = PowereggDateTime::GetObj();
 
@@ -163,7 +163,7 @@ void NSStarmanLib::Help::Update()
     m_previousHour = datetime->GetHour();
 }
 
-void NSStarmanLib::Help::Save(const std::wstring& filepath)
+void NSModel::Help::Save(const std::wstring& filepath)
 {
     // m_presentMapの内容を出力
     std::vector<std::vector<std::wstring>> vvs;
@@ -200,7 +200,7 @@ void NSStarmanLib::Help::Save(const std::wstring& filepath)
     Util::WriteToCsv(filepath, vvs, false);
 }
 
-std::vector<ItemDef> NSStarmanLib::Help::ReceiveItems(const std::wstring& npcName)
+std::vector<ItemDef> NSModel::Help::ReceiveItems(const std::wstring& npcName)
 {
     if (IsCraftingRaft())
     {
@@ -215,14 +215,14 @@ std::vector<ItemDef> NSStarmanLib::Help::ReceiveItems(const std::wstring& npcNam
     return present;
 }
 
-bool NSStarmanLib::Help::Received(const std::wstring& npcName)
+bool NSModel::Help::Received(const std::wstring& npcName)
 {
     // 空だったら渡した後。
     auto received = m_presentMap.at(npcName).empty();
     return received;
 }
 
-bool NSStarmanLib::Help::CanReceive(const std::wstring& npcName)
+bool NSModel::Help::CanReceive(const std::wstring& npcName)
 {
     if (!m_bLoaded)
     {
@@ -251,7 +251,7 @@ bool NSStarmanLib::Help::CanReceive(const std::wstring& npcName)
     return true;
 }
 
-std::vector<ItemDef> NSStarmanLib::Help::GetRandomItem(const std::wstring& npcName)
+std::vector<ItemDef> NSModel::Help::GetRandomItem(const std::wstring& npcName)
 {
     int rnd = 0;
     int work = 0;
@@ -295,7 +295,7 @@ std::vector<ItemDef> NSStarmanLib::Help::GetRandomItem(const std::wstring& npcNa
     return randomItem;
 }
 
-bool NSStarmanLib::Help::CrossOver16() const
+bool NSModel::Help::CrossOver16() const
 {
     auto datetime = PowereggDateTime::GetObj();
     bool crossOver = false;
@@ -332,7 +332,7 @@ bool NSStarmanLib::Help::CrossOver16() const
     return crossOver;
 }
 
-bool NSStarmanLib::Help::BackTime() const
+bool NSModel::Help::BackTime() const
 {
     auto datetime = PowereggDateTime::GetObj();
     bool backtime = false;
@@ -366,7 +366,7 @@ bool NSStarmanLib::Help::BackTime() const
     return backtime;
 }
 
-bool NSStarmanLib::Help::IsCraftingRaft()
+bool NSModel::Help::IsCraftingRaft()
 {
     // "raft", "raft1"、という風に、強化値が違うとIDが異なるので注意
     bool raftCrafting = false;

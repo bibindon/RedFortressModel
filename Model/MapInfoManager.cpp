@@ -2,7 +2,7 @@
 
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 MapInfoManager* MapInfoManager::obj { nullptr };
 
@@ -51,12 +51,12 @@ void MapInfo::GetPos(int* x, int* y)
     *y = m_y;
 }
 
-void NSStarmanLib::MapInfo::SetImagePath(const std::wstring& imagePath)
+void NSModel::MapInfo::SetImagePath(const std::wstring& imagePath)
 {
     m_imagePath = imagePath;
 }
 
-std::wstring NSStarmanLib::MapInfo::GetImagePath()
+std::wstring NSModel::MapInfo::GetImagePath()
 {
     return m_imagePath;
 }
@@ -185,7 +185,7 @@ void MapInfoManager::SetDiscovered(const std::wstring& id)
     it->SetDiscovered(true);
 }
 
-std::wstring NSStarmanLib::MapInfoManager::GetName(const std::wstring& id)
+std::wstring NSModel::MapInfoManager::GetName(const std::wstring& id)
 {
     auto it = std::find_if(m_mapInfoList.begin(),
                            m_mapInfoList.end(),
@@ -212,7 +212,7 @@ void MapInfoManager::GetPos(const std::wstring& id, int* x, int* y)
     it->GetPos(x, y);
 }
 
-std::wstring NSStarmanLib::MapInfoManager::GetImagePath(const std::wstring& id)
+std::wstring NSModel::MapInfoManager::GetImagePath(const std::wstring& id)
 {
     auto it = std::find_if(m_mapInfoList.begin(),
                            m_mapInfoList.end(),

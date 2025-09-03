@@ -2,7 +2,7 @@
 #include <vector>
 #include "Util.h"
 
-using namespace NSStarmanLib;
+using namespace NSModel;
 
 Rynen* Rynen::obj { nullptr };
 
