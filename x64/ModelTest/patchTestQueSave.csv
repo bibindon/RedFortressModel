@@ -1,0 +1,7 @@
+﻿ID,状態,予約日時,開始日時,完了日時,テスト結果
+unknownPlant1,FINISHED,1:2:3:4:5:6,1:2:3:4:5:6,1:2:3:5:5:6,毒
+unknownPlant2,FINISHED,1:2:3:4:6:6,1:2:3:5:5:6,1:2:3:6:5:6,毒ではない
+unknownPlant3,FINISHED,1:2:3:4:7:6,1:2:3:6:5:6,1:2:3:7:5:6,毒
+unknownPlant4,STARTED,1:2:3:4:8:6,1:2:3:7:5:6,,
+unknownPlant5,NOT_START,1:2:3:4:9:6,,,
+unknownPlant6,NOT_START,1:2:3:4:10:6,,,

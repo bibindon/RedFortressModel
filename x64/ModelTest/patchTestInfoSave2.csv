@@ -1,0 +1,14 @@
+﻿Item ID,毒性,パッチテスト回数,正解率
+donguri1,n,0,0.600000
+donguri2,n,0,0.600000
+donguri3,n,0,0.600000
+flower,n,0,0.600000
+sotetsu,n,0,0.600000
+tanpopo,n,0,0.600000
+tsukushi,n,0,0.600000
+unknownPlant1,n,2,0.800000
+unknownPlant2,n,0,0.600000
+unknownPlant3,n,0,0.600000
+unknownPlant4,n,0,0.600000
+unknownPlant5,y,0,0.600000
+unknownPlant6,n,0,0.600000
